@@ -63,7 +63,7 @@ const HomePage = () => {
               <p className="text-sm text-gray-600">Laboratorio di Educazione Alla Felicità</p>
             </div>
             <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center">
-              <span className="text-white text-xl">😊</span>
+              <span className="text-white text-xl">🍃</span>
             </div>
           </div>
         </div>
