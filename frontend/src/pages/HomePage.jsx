@@ -116,6 +116,8 @@ const HomePage = () => {
   const handleTabChange = (tabId) => {
     console.log('Changing to tab:', tabId);
     setActiveTab(tabId);
+    // Force re-render by scrolling to top
+    window.scrollTo(0, 0);
   };
 
   return (
