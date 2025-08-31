@@ -176,7 +176,7 @@ const HomePage = () => {
                 <User className="w-10 h-10 text-green-600" />
               </div>
               <h3 className="text-lg font-semibold text-gray-800 mb-1">Paziente</h3>
-              <p className="text-gray-600">Studio di Psicoterapia CBT</p>
+              <p className="text-gray-600">LEAF - Laboratorio di Educazione Alla Felicità</p>
             </div>
 
             <div className="bg-white rounded-xl p-4 shadow-sm">
