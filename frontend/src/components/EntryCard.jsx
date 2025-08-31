@@ -2,21 +2,37 @@ import React from 'react';
 
 const EntryCard = ({ entry, onClick, compact = false }) => {
   const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    const today = new Date();
-    const yesterday = new Date(today);
-    yesterday.setDate(yesterday.getDate() - 1);
+    try {
+      // Validate date format first
+      if (!dateString || dateString === 'invalid-date-format' || dateString === 'Invalid Date') {
+        return 'Data non valida';
+      }
+      
+      const date = new Date(dateString);
+      
+      // Check if date is valid
+      if (isNaN(date.getTime())) {
+        return 'Data non valida';
+      }
+      
+      const today = new Date();
+      const yesterday = new Date(today);
+      yesterday.setDate(yesterday.getDate() - 1);
 
-    if (date.toDateString() === today.toDateString()) {
-      return 'Oggi';
-    } else if (date.toDateString() === yesterday.toDateString()) {
-      return 'Ieri';
-    } else {
-      return date.toLocaleDateString('it-IT', { 
-        weekday: 'short', 
-        month: 'short', 
-        day: 'numeric' 
-      });
+      if (date.toDateString() === today.toDateString()) {
+        return 'Oggi';
+      } else if (date.toDateString() === yesterday.toDateString()) {
+        return 'Ieri';
+      } else {
+        return date.toLocaleDateString('it-IT', { 
+          weekday: 'short', 
+          month: 'short', 
+          day: 'numeric' 
+        });
+      }
+    } catch (error) {
+      console.warn('Error formatting date:', dateString, error);
+      return 'Data non valida';
     }
   };
 
