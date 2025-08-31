@@ -158,7 +158,7 @@ const HomePage = () => {
                 <div className="text-xs text-gray-500">giorni</div>
               </div>
               <a
-                href="https://www.miodottore.it/mauro-de-luca/psicologo-psicoterapeuta-psicologo-clinico/taranto#address-id=289784&is-online-only=false&filters%5Bspecializations%5D%5B%5D=12"
+                href="https://www.miodottore.it/mauro-de-luca/psicologo-psicoterapeuta-psicologo-clinico/taranto"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-8 h-8 bg-gradient-to-r from-green-400 to-blue-500 rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
