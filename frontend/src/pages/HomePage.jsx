@@ -115,9 +115,18 @@ const HomePage = () => {
 
   const handleTabChange = (tabId) => {
     console.log('Changing to tab:', tabId);
+    
+    // Prevent double taps
+    if (activeTab === tabId) return;
+    
     setActiveTab(tabId);
-    // Force re-render by scrolling to top
-    window.scrollTo(0, 0);
+    
+    // Force re-render by scrolling to top on mobile
+    if (window.innerWidth <= 768) {
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 100);
+    }
   };
 
   return (
