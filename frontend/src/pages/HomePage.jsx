@@ -134,12 +134,21 @@ const HomePage = () => {
               </div>
             </div>
             
-            {/* Quick Stats */}
-            <div className="flex items-center gap-4">
+            {/* Quick Stats & CTA */}
+            <div className="flex items-center gap-3">
               <div className="text-center">
                 <div className="text-lg font-bold text-gray-800">{statistics?.current_streak || 0}</div>
                 <div className="text-xs text-gray-500">giorni</div>
               </div>
+              <a
+                href="https://www.miodottore.it"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-8 h-8 bg-gradient-to-r from-green-400 to-blue-500 rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
+                title="Prenota consulenza"
+              >
+                <span className="text-white text-sm">📅</span>
+              </a>
               <div className="w-8 h-8 bg-white/80 rounded-xl flex items-center justify-center shadow-sm">
                 <Sparkles className="w-4 h-4 text-yellow-500" />
               </div>
