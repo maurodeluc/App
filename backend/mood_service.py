@@ -129,10 +129,21 @@ class MoodService:
     async def get_statistics(patient_id: str = "default") -> MoodStatistics:
         """Get mood statistics for a patient"""
         try:
-            # Get all entries
-            entries = await MoodService.get_all_entries(patient_id)
+            # Get all entries with date validation
+            all_entries = await MoodService.get_all_entries(patient_id)
             
-            if not entries:
+            # Filter out entries with invalid dates
+            valid_entries = []
+            for entry in all_entries:
+                try:
+                    # Validate date format
+                    datetime.strptime(entry.date, "%Y-%m-%d")
+                    valid_entries.append(entry)
+                except ValueError:
+                    logger.warning(f"Skipping entry with invalid date format: {entry.date}")
+                    continue
+            
+            if not valid_entries:
                 return MoodStatistics(
                     total_entries=0,
                     current_streak=0,
@@ -141,21 +152,21 @@ class MoodService:
                     mood_distribution={}
                 )
             
-            # Calculate statistics
-            total_entries = len(entries)
+            # Calculate statistics with valid entries only
+            total_entries = len(valid_entries)
             
             # Calculate current streak (consecutive days with entries)
-            current_streak = await MoodService._calculate_streak(entries)
+            current_streak = await MoodService._calculate_streak(valid_entries)
             
             # Calculate average mood
-            mood_scores = [entry.mood.id for entry in entries]
+            mood_scores = [entry.mood.id for entry in valid_entries]
             avg_mood_score = sum(mood_scores) / len(mood_scores)
             mood_levels = await get_mood_levels()
             avg_mood = next((mood.name for mood in mood_levels if mood.id == round(avg_mood_score)), "N/A")
             
             # Most common activities
             activity_counts = {}
-            for entry in entries:
+            for entry in valid_entries:
                 for activity in entry.activities:
                     activity_counts[activity.name] = activity_counts.get(activity.name, 0) + 1
             
@@ -164,7 +175,7 @@ class MoodService:
             
             # Mood distribution
             mood_distribution = {}
-            for entry in entries:
+            for entry in valid_entries:
                 mood_name = entry.mood.name
                 mood_distribution[mood_name] = mood_distribution.get(mood_name, 0) + 1
             
@@ -178,7 +189,14 @@ class MoodService:
             
         except Exception as e:
             logger.error(f"Error getting statistics: {str(e)}")
-            raise
+            # Return safe default statistics instead of raising
+            return MoodStatistics(
+                total_entries=0,
+                current_streak=0,
+                average_mood="N/A",
+                most_common_activities=[],
+                mood_distribution={}
+            )
     
     @staticmethod
     async def _calculate_streak(entries: List[MoodEntry]) -> int:
