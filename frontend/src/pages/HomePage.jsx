@@ -176,6 +176,7 @@ const HomePage = () => {
               </div>
               <a
                 href="https://www.miodottore.it/mauro-de-luca/psicologo-psicoterapeuta-psicologo-clinico/taranto"
+                onClick={handleBookingClick}
                 rel="noopener noreferrer"
                 className="w-8 h-8 bg-gradient-to-r from-green-400 to-blue-500 rounded-xl flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110"
                 title="Prenota con Dr. De Luca"
