@@ -359,8 +359,17 @@ const HomePage = () => {
                   <strong>Dott. Mauro De Luca</strong><br/>
                   Psicologo • Psicoterapeuta • Psicologo Clinico
                 </p>
+                <div className="flex items-center justify-center gap-2 mb-2">
+                  <div className="w-6 h-6 bg-yellow-400 rounded-full flex items-center justify-center">
+                    <span className="text-white text-xs font-bold">★</span>
+                  </div>
+                  <div className="w-6 h-6 bg-yellow-400 rounded-full flex items-center justify-center">
+                    <span className="text-white text-xs font-bold">★</span>
+                  </div>
+                </div>
                 <p className="text-gray-500 text-xs mb-6">
-                  25+ anni esperienza • 133 recensioni positive • Consulenze online
+                  25+ anni esperienza • 133 recensioni positive<br/>
+                  🏆 Best Quality 2023-2024 • Consulenze online
                 </p>
                 <a
                   href="https://www.miodottore.it/mauro-de-luca/psicologo-psicoterapeuta-psicologo-clinico/taranto#address-id=289784&is-online-only=false&filters%5Bspecializations%5D%5B%5D=12"
