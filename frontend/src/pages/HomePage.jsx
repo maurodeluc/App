@@ -166,6 +166,9 @@ const HomePage = () => {
       {/* Content Area */}
       <div className="px-6 pb-24">
         
+        {/* Debug info */}
+        <div className="text-xs text-gray-400 mb-2">Active tab: {activeTab}</div>
+        
         {/* Today Tab */}
         {activeTab === 'today' && (
           <div className="space-y-6">
