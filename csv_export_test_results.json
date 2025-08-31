@@ -1,0 +1,58 @@
+{
+  "timestamp": "2025-08-31T21:25:31.505853",
+  "base_url": "https://leaf-therapy.preview.emergentagent.com/api",
+  "total_tests": 7,
+  "passed": 7,
+  "failed": 0,
+  "results": [
+    {
+      "test": "CSV Export Default",
+      "success": true,
+      "message": "Successfully exported CSV with proper headers and content",
+      "details": null,
+      "timestamp": "2025-08-31T21:25:31.168739"
+    },
+    {
+      "test": "CSV Export Patient ID",
+      "success": true,
+      "message": "Successfully handled patient_id parameter",
+      "details": null,
+      "timestamp": "2025-08-31T21:25:31.226906"
+    },
+    {
+      "test": "CSV Structure",
+      "success": true,
+      "message": "CSV structure verified with 19 lines and all required sections",
+      "details": null,
+      "timestamp": "2025-08-31T21:25:31.285967"
+    },
+    {
+      "test": "CSV Content Parsing",
+      "success": true,
+      "message": "CSV parsed successfully: 5 data rows, statistics and distribution sections present",
+      "details": null,
+      "timestamp": "2025-08-31T21:25:31.343522"
+    },
+    {
+      "test": "CSV Statistics Content",
+      "success": true,
+      "message": "CSV contains proper statistics and mood distribution data",
+      "details": null,
+      "timestamp": "2025-08-31T21:25:31.399818"
+    },
+    {
+      "test": "Integration - Stats Overview",
+      "success": true,
+      "message": "Statistics endpoint working",
+      "details": null,
+      "timestamp": "2025-08-31T21:25:31.449921"
+    },
+    {
+      "test": "Integration - Entries",
+      "success": true,
+      "message": "Entries endpoint working",
+      "details": null,
+      "timestamp": "2025-08-31T21:25:31.503773"
+    }
+  ]
+}
