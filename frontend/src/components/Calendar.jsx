@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { allMockEntries } from '../data/mockData';
 
-const Calendar = ({ onDateSelect }) => {
+const Calendar = ({ onDateSelect, entries = [] }) => {
   const [currentDate, setCurrentDate] = useState(new Date());
 
   const getDaysInMonth = (date) => {
