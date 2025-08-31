@@ -10,7 +10,7 @@ const ActivitySelector = ({ selectedActivities, onActivityToggle }) => {
 
   return (
     <div className="space-y-4">
-      <h3 className="text-lg font-semibold text-gray-700 mb-4">What did you do?</h3>
+      <h3 className="text-lg font-semibold text-gray-700 mb-4">Cosa hai fatto oggi?</h3>
       
       {activityCategories.map((category) => (
         <div key={category.id} className="bg-white rounded-xl p-4 shadow-sm">
