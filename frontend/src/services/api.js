@@ -132,6 +132,18 @@ class ApiService {
       throw error;
     }
   }
+
+  static async getMoodTrend(days = 90, patientId = 'default') {
+    try {
+      const response = await apiClient.get('/stats/mood-trend', {
+        params: { days, patient_id: patientId }
+      });
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching mood trend:', error);
+      throw error;
+    }
+  }
 }
 
 export default ApiService;
