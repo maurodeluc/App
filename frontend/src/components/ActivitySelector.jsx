@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { activityCategories } from '../data/mockData';
 
-const ActivitySelector = ({ selectedActivities, onActivityToggle }) => {
+const ActivitySelector = ({ selectedActivities, onActivityToggle, activityCategories = [] }) => {
   const [activeCategory, setActiveCategory] = useState(null);
 
   const isActivitySelected = (activity) => {
