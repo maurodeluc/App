@@ -14,10 +14,40 @@ const HomePage = () => {
   const [todayNote, setTodayNote] = useState('');
   const [showAddEntry, setShowAddEntry] = useState(false);
 
+  // Hooks for API data
+  const { entries, loading: entriesLoading, error: entriesError, createEntry, getEntryByDate } = useEntries();
+  const { moodLevels, activityCategories, loading: refLoading, error: refError } = useReferenceData();
+  const { statistics, loading: statsLoading } = useStatistics();
+
   const today = new Date().toISOString().split('T')[0];
-  const todayEntry = allMockEntries.find(entry => entry.date === today);
+  const todayEntry = getEntryByDate(today);
   
-  const recentEntries = allMockEntries.slice(0, 7);
+  const recentEntries = entries.slice(0, 7);
+
+  // Loading state
+  if (entriesLoading || refLoading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-16 h-16 border-4 border-green-200 border-t-green-500 rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-gray-600">Caricamento LEAF...</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Error state
+  if (entriesError || refError) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="text-center">
+          <div className="text-red-500 text-xl mb-4">⚠️</div>
+          <p className="text-gray-600">Errore nel caricamento dei dati</p>
+          <p className="text-sm text-red-500">{entriesError || refError}</p>
+        </div>
+      </div>
+    );
+  }
 
   const handleActivityToggle = (activity) => {
     setTodayActivities(prev => {
