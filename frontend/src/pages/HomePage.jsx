@@ -408,6 +408,7 @@ const HomePage = () => {
                 </p>
                 <a
                   href="https://www.miodottore.it/mauro-de-luca/psicologo-psicoterapeuta-psicologo-clinico/taranto"
+                  onClick={handleBookingClick}
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 bg-gradient-to-r from-green-500 to-blue-500 text-white px-8 py-4 rounded-2xl font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
                   style={{ touchAction: 'manipulation' }}
