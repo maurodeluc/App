@@ -195,7 +195,7 @@ const HomePage = () => {
 
         {activeTab === 'calendar' && (
           <div className="p-4">
-            <Calendar />
+            <Calendar entries={entries} />
           </div>
         )}
 
