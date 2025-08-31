@@ -743,6 +743,10 @@ class LEAFBackendTester:
             self.test_get_all_entries_with_data,
             self.test_create_additional_entries,
             self.test_statistics_overview,
+            self.test_mood_trend_default,
+            self.test_mood_trend_with_days_parameter,
+            self.test_mood_trend_with_patient_id,
+            self.test_existing_endpoints_verification,
             self.test_data_validation
         ]
         
