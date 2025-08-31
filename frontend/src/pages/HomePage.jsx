@@ -417,11 +417,11 @@ const HomePage = () => {
                   25+ anni esperienza • 133 recensioni positive<br/>
                   🏆 Best Quality 2023-2024 • Consulenze online
                 </p>
-                <a
-                  href="https://www.miodottore.it/mauro-de-luca/psicologo-psicoterapeuta-psicologo-clinico/taranto"
+                
+                {/* Primary booking button with JavaScript */}
+                <button
                   onClick={handleBookingClick}
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-gradient-to-r from-green-500 to-blue-500 text-white px-8 py-4 rounded-2xl font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+                  className="inline-flex items-center gap-2 bg-gradient-to-r from-green-500 to-blue-500 text-white px-8 py-4 rounded-2xl font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 mb-3"
                   style={{ touchAction: 'manipulation' }}
                 >
                   <span>📅</span>
@@ -429,7 +429,22 @@ const HomePage = () => {
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                   </svg>
-                </a>
+                </button>
+                
+                {/* Fallback direct link */}
+                <div className="text-xs text-gray-500">
+                  <p>Problemi con il link? 
+                    <a 
+                      href="https://www.miodottore.it/mauro-de-luca/psicologo-psicoterapeuta-psicologo-clinico/taranto" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="ml-1 text-blue-600 underline hover:text-blue-800"
+                    >
+                      Clicca qui per aprire MioDottore direttamente
+                    </a>
+                  </p>
+                </div>
+                
                 <p className="text-xs text-gray-500 mt-3">
                   💻 Online disponibile • 🏥 Studio a Taranto
                 </p>
