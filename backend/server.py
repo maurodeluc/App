@@ -118,6 +118,14 @@ async def get_mood_statistics(patient_id: str = "default"):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
+@api_router.get("/stats/mood-trend")
+async def get_mood_trend(days: int = 90, patient_id: str = "default"):
+    """Get mood trend data for charting (default: last 90 days / 3 months)"""
+    try:
+        return await MoodService.get_mood_trend(days, patient_id)
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
 # Include the router in the main app
 app.include_router(api_router)
 
