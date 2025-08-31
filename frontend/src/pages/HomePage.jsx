@@ -113,6 +113,11 @@ const HomePage = () => {
     { id: 'profile', label: 'Profilo', icon: Settings, color: 'text-gray-600' }
   ];
 
+  const handleTabChange = (tabId) => {
+    console.log('Changing to tab:', tabId);
+    setActiveTab(tabId);
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-green-50">
       
