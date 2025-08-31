@@ -224,3 +224,47 @@ class MoodService:
                 break
         
         return streak
+    
+    @staticmethod
+    async def get_mood_trend(days: int = 90, patient_id: str = "default") -> List[dict]:
+        """Get mood trend data for the specified number of days"""
+        try:
+            # Get all entries for the patient
+            all_entries = await MoodService.get_all_entries(patient_id)
+            
+            # Filter entries within the specified date range
+            end_date = datetime.now().date()
+            start_date = end_date - timedelta(days=days)
+            
+            # Filter and validate entries
+            valid_entries = []
+            for entry in all_entries:
+                try:
+                    entry_date = datetime.strptime(entry.date, "%Y-%m-%d").date()
+                    if start_date <= entry_date <= end_date:
+                        valid_entries.append(entry)
+                except ValueError:
+                    logger.warning(f"Skipping entry with invalid date format: {entry.date}")
+                    continue
+            
+            # Sort by date (oldest first for trend visualization)
+            valid_entries.sort(key=lambda x: x.date)
+            
+            # Format data for charting
+            trend_data = []
+            for entry in valid_entries:
+                trend_data.append({
+                    "date": entry.date,
+                    "mood_id": entry.mood.id,
+                    "mood_name": entry.mood.name,
+                    "mood_emoji": entry.mood.emoji,
+                    "mood_color": entry.mood.color,
+                    "activities_count": len(entry.activities),
+                    "note": entry.note
+                })
+            
+            return trend_data
+            
+        except Exception as e:
+            logger.error(f"Error getting mood trend: {str(e)}")
+            raise
