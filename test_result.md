@@ -225,6 +225,18 @@ backend:
           agent: "testing"
           comment: "Minor: Error messages work but could be more consistent. Non-existent entries return proper 404 status. Date validation could be improved but doesn't break functionality."
 
+  - task: "Mood Trend API"
+    implemented: true
+    working: true
+    file: "backend/mood_service.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: true
+          agent: "testing"
+          comment: "✅ NEW ENDPOINT: GET /api/stats/mood-trend working correctly - Returns proper mood trend data with date, mood_id (1-5), mood_name (Italian), mood_emoji, mood_color, activities_count, and note. Tested with default 90 days, custom days parameters (30,60,90,180,365), and patient_id parameter. All response formats match expected structure."
+
 frontend:
   - task: "LEAF Header and Branding"
     implemented: true
