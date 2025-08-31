@@ -4,6 +4,7 @@ import MoodSelector from '../components/MoodSelector';
 import ActivitySelector from '../components/ActivitySelector';
 import Calendar from '../components/Calendar';
 import EntryCard from '../components/EntryCard';
+import LeafLogo from '../components/LeafLogo';
 import { useEntries } from '../hooks/useEntries';
 import { useReferenceData, useStatistics } from '../hooks/useReferenceData';
 
