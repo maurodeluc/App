@@ -248,6 +248,32 @@ const HomePage = () => {
               </div>
             )}
 
+            {/* Smart Support Suggestion */}
+            {recentEntries.length > 0 && recentEntries.slice(0, 3).some(entry => entry.mood.id <= 2) && (
+              <div className="bg-gradient-to-r from-orange-50 to-red-50 rounded-3xl p-6 shadow-sm border border-orange-100">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-gradient-to-r from-orange-400 to-red-400 rounded-2xl flex items-center justify-center flex-shrink-0">
+                    <span className="text-white text-xl">🤗</span>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-lg font-semibold text-gray-800 mb-2">Ti senti giù ultimamente?</h3>
+                    <p className="text-gray-600 text-sm mb-4 leading-relaxed">
+                      Ho notato che hai registrato alcuni momenti difficili. Ricorda che chiedere aiuto è un segno di forza.
+                    </p>
+                    <a
+                      href="https://www.miodottore.it"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 bg-gradient-to-r from-orange-500 to-red-500 text-white px-6 py-3 rounded-2xl font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 text-sm"
+                    >
+                      <span>💬</span>
+                      <span>Parliamone insieme</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            )}
+
             {/* Recent Entries Preview */}
             {recentEntries.length > 0 && (
               <div className="bg-white rounded-3xl p-6 shadow-sm border border-gray-100">
