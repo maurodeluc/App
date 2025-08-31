@@ -344,8 +344,8 @@ const HomePage = () => {
               <div className="w-20 h-20 bg-gradient-to-r from-green-100 to-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <span className="text-2xl">🌱</span>
               </div>
-              <h3 className="text-xl font-semibold text-gray-800 mb-1">Il tuo percorso</h3>
-              <p className="text-gray-500 text-sm">LEAF - Laboratorio di Educazione Alla Felicità</p>
+              <h3 className="text-xl font-semibold text-gray-800 mb-1">Il tuo percorso di benessere</h3>
+              <p className="text-gray-500 text-sm">con il Dr. Mauro De Luca</p>
             </div>
 
             {/* Prenota Consulenza - Call to Action */}
