@@ -126,6 +126,76 @@ async def get_mood_trend(days: int = 90, patient_id: str = "default"):
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
+@api_router.get("/export/csv")
+async def export_mood_data_csv(patient_id: str = "default"):
+    """Export all mood data and statistics as CSV"""
+    try:
+        from fastapi.responses import StreamingResponse
+        import io
+        import csv
+        from datetime import datetime
+        
+        # Get all entries and statistics
+        entries = await MoodService.get_all_entries(patient_id, limit=1000)  # Get more entries for export
+        statistics = await MoodService.get_statistics(patient_id)
+        
+        # Create CSV content
+        output = io.StringIO()
+        writer = csv.writer(output)
+        
+        # Write CSV headers
+        writer.writerow([
+            'Data', 'Umore', 'Livello_Umore', 'Emoji', 'Attività', 'Note', 'Data_Creazione'
+        ])
+        
+        # Write mood entries
+        for entry in entries:
+            activities_text = '; '.join([f"{act.name} ({act.category})" for act in entry.activities])
+            writer.writerow([
+                entry.date,
+                entry.mood.name,
+                entry.mood.id,
+                entry.mood.emoji,
+                activities_text,
+                entry.note,
+                entry.created_at.strftime('%Y-%m-%d %H:%M:%S') if entry.created_at else ''
+            ])
+        
+        # Add empty row
+        writer.writerow([])
+        
+        # Write statistics summary
+        writer.writerow(['=== STATISTICHE RIASSUNTIVE ==='])
+        writer.writerow(['Metric', 'Valore'])
+        writer.writerow(['Entries totali', statistics.total_entries])
+        writer.writerow(['Giorni consecutivi', statistics.current_streak])
+        writer.writerow(['Umore medio', statistics.average_mood])
+        writer.writerow(['Attività più comuni', '; '.join(statistics.most_common_activities)])
+        
+        # Mood distribution
+        writer.writerow([])
+        writer.writerow(['=== DISTRIBUZIONE UMORE ==='])
+        writer.writerow(['Umore', 'Conteggio'])
+        for mood, count in statistics.mood_distribution.items():
+            writer.writerow([mood, count])
+        
+        # Generate filename with current date
+        current_date = datetime.now().strftime('%Y-%m-%d')
+        filename = f"LEAF_mood_data_{current_date}.csv"
+        
+        # Create response
+        output.seek(0)
+        response = StreamingResponse(
+            io.BytesIO(output.getvalue().encode('utf-8')),
+            media_type='text/csv',
+            headers={"Content-Disposition": f"attachment; filename={filename}"}
+        )
+        
+        return response
+        
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error generating CSV: {str(e)}")
+
 # Include the router in the main app
 app.include_router(api_router)
 
