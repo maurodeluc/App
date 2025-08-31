@@ -390,12 +390,11 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Statistics API date format fix needed"
-    - "Entry date display correction required"
+    - "CSV Export API testing completed successfully"
   stuck_tasks: 
     - "Statistics Display"
     - "Entry Date Display"
-  test_all: true
+  test_all: false
   test_priority: "high_first"
 
 agent_communication:
