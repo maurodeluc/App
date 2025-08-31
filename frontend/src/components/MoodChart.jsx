@@ -27,10 +27,10 @@ const MoodChart = () => {
       setLoading(true);
       setError(null);
       
-      const response = await api.get(`/stats/mood-trend?days=${selectedPeriod}`);
+      const data = await ApiService.getMoodTrend(selectedPeriod);
       
       // Transform data for chart
-      const formattedData = response.data.map(entry => ({
+      const formattedData = data.map(entry => ({
         date: entry.date,
         mood_score: entry.mood_id,
         mood_name: entry.mood_name,
