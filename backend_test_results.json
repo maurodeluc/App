@@ -1,6 +1,6 @@
 {
   "timestamp": "2025-08-31T19:25:03.483808",
-  "base_url": "https://daylio-clone.preview.emergentagent.com/api",
+  "base_url": "https://leaf-therapy.preview.emergentagent.com/api",
   "total_tests": 12,
   "passed": 8,
   "failed": 4,

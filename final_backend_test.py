@@ -8,7 +8,7 @@ import requests
 import json
 from datetime import datetime
 
-BASE_URL = "https://daylio-clone.preview.emergentagent.com/api"
+BASE_URL = "https://leaf-therapy.preview.emergentagent.com/api"
 HEADERS = {"Content-Type": "application/json"}
 
 def test_core_endpoints():
