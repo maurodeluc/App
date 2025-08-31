@@ -1,8 +1,8 @@
 {
-  "timestamp": "2025-08-31T21:09:06.163613",
+  "timestamp": "2025-08-31T21:24:12.420085",
   "base_url": "https://leaf-therapy.preview.emergentagent.com/api",
-  "total_tests": 21,
-  "passed": 17,
+  "total_tests": 24,
+  "passed": 20,
   "failed": 4,
   "results": [
     {
@@ -12,7 +12,7 @@
       "details": {
         "message": "LEAF API - Laboratorio di Educazione Alla Felicit\u00e0"
       },
-      "timestamp": "2025-08-31T21:08:56.675304"
+      "timestamp": "2025-08-31T21:24:01.521079"
     },
     {
       "test": "Mood Levels",
@@ -55,7 +55,7 @@
           "order": 5
         }
       ],
-      "timestamp": "2025-08-31T21:08:57.229801"
+      "timestamp": "2025-08-31T21:24:02.079213"
     },
     {
       "test": "Activity Categories",
@@ -243,13 +243,28 @@
           ]
         }
       ],
-      "timestamp": "2025-08-31T21:08:57.793825"
+      "timestamp": "2025-08-31T21:24:02.636562"
     },
     {
       "test": "Get All Entries (Empty)",
       "success": true,
-      "message": "Successfully retrieved 4 entries",
+      "message": "Successfully retrieved 5 entries",
       "details": [
+        {
+          "id": "8561d9c0-7fb3-454b-8cfa-791b73a1c5e4",
+          "date": "invalid-date",
+          "mood": {
+            "id": 3,
+            "name": "neutro",
+            "emoji": "\ud83d\ude10",
+            "color": "#FFD23F"
+          },
+          "activities": [],
+          "note": "Test con data invalida",
+          "created_at": "2025-08-31T21:09:05.657000",
+          "updated_at": "2025-08-31T21:09:05.657000",
+          "patient_id": "default"
+        },
         {
           "id": "dcda53bb-4149-403a-937e-f64a500d3bd4",
           "date": "2025-08-31",
@@ -381,14 +396,14 @@
           "patient_id": "default"
         }
       ],
-      "timestamp": "2025-08-31T21:08:58.348743"
+      "timestamp": "2025-08-31T21:24:03.188765"
     },
     {
       "test": "Create Mood Entry",
       "success": false,
       "message": "HTTP 400",
       "details": "{\"detail\":\"Entry already exists for date 2025-08-31\"}",
-      "timestamp": "2025-08-31T21:08:58.907289"
+      "timestamp": "2025-08-31T21:24:03.747535"
     },
     {
       "test": "Create Duplicate Entry",
@@ -397,7 +412,7 @@
       "details": {
         "detail": "Entry already exists for date 2025-08-31"
       },
-      "timestamp": "2025-08-31T21:08:59.458204"
+      "timestamp": "2025-08-31T21:24:04.300220"
     },
     {
       "test": "Get Entry By Date",
@@ -467,7 +482,7 @@
         "updated_at": "2025-08-31T17:26:18.226000",
         "patient_id": "default"
       },
-      "timestamp": "2025-08-31T21:09:00.015183"
+      "timestamp": "2025-08-31T21:24:04.851386"
     },
     {
       "test": "Get Non-existent Entry",
@@ -476,13 +491,28 @@
       "details": {
         "detail": "No entry found for date 2026-08-31"
       },
-      "timestamp": "2025-08-31T21:09:00.573036"
+      "timestamp": "2025-08-31T21:24:05.406506"
     },
     {
       "test": "Get All Entries (With Data)",
       "success": true,
-      "message": "Successfully retrieved 4 entries",
+      "message": "Successfully retrieved 5 entries",
       "details": [
+        {
+          "id": "8561d9c0-7fb3-454b-8cfa-791b73a1c5e4",
+          "date": "invalid-date",
+          "mood": {
+            "id": 3,
+            "name": "neutro",
+            "emoji": "\ud83d\ude10",
+            "color": "#FFD23F"
+          },
+          "activities": [],
+          "note": "Test con data invalida",
+          "created_at": "2025-08-31T21:09:05.657000",
+          "updated_at": "2025-08-31T21:09:05.657000",
+          "patient_id": "default"
+        },
         {
           "id": "dcda53bb-4149-403a-937e-f64a500d3bd4",
           "date": "2025-08-31",
@@ -614,14 +644,14 @@
           "patient_id": "default"
         }
       ],
-      "timestamp": "2025-08-31T21:09:01.154233"
+      "timestamp": "2025-08-31T21:24:05.963183"
     },
     {
       "test": "Create Additional Entries",
       "success": false,
       "message": "Only created 0/3 entries",
       "details": null,
-      "timestamp": "2025-08-31T21:09:01.839575"
+      "timestamp": "2025-08-31T21:24:06.644058"
     },
     {
       "test": "Statistics Overview",
@@ -644,7 +674,7 @@
           "neutro": 1
         }
       },
-      "timestamp": "2025-08-31T21:09:02.392496"
+      "timestamp": "2025-08-31T21:24:07.200368"
     },
     {
       "test": "Mood Trend Default",
@@ -688,70 +718,91 @@
           "note": ""
         }
       ],
-      "timestamp": "2025-08-31T21:09:02.945975"
+      "timestamp": "2025-08-31T21:24:07.758470"
     },
     {
       "test": "Mood Trend 30 days",
       "success": true,
       "message": "Successfully retrieved trend data for 30 days with 4 entries",
       "details": null,
-      "timestamp": "2025-08-31T21:09:03.497531"
+      "timestamp": "2025-08-31T21:24:08.313531"
     },
     {
       "test": "Mood Trend 60 days",
       "success": true,
       "message": "Successfully retrieved trend data for 60 days with 4 entries",
       "details": null,
-      "timestamp": "2025-08-31T21:09:03.550706"
+      "timestamp": "2025-08-31T21:24:08.365053"
     },
     {
       "test": "Mood Trend 90 days",
       "success": true,
       "message": "Successfully retrieved trend data for 90 days with 4 entries",
       "details": null,
-      "timestamp": "2025-08-31T21:09:03.606902"
+      "timestamp": "2025-08-31T21:24:08.417722"
     },
     {
       "test": "Mood Trend 180 days",
       "success": true,
       "message": "Successfully retrieved trend data for 180 days with 4 entries",
       "details": null,
-      "timestamp": "2025-08-31T21:09:03.661383"
+      "timestamp": "2025-08-31T21:24:08.468723"
     },
     {
       "test": "Mood Trend 365 days",
       "success": true,
       "message": "Successfully retrieved trend data for 365 days with 4 entries",
       "details": null,
-      "timestamp": "2025-08-31T21:09:03.716839"
+      "timestamp": "2025-08-31T21:24:08.517425"
     },
     {
       "test": "Mood Trend with Patient ID",
       "success": true,
       "message": "Successfully handled patient_id parameter, returned 0 entries",
       "details": null,
-      "timestamp": "2025-08-31T21:09:04.268723"
+      "timestamp": "2025-08-31T21:24:09.070382"
+    },
+    {
+      "test": "CSV Export Default",
+      "success": true,
+      "message": "Successfully exported CSV with 19 lines, proper headers and sections",
+      "details": null,
+      "timestamp": "2025-08-31T21:24:09.624489"
+    },
+    {
+      "test": "CSV Export with Patient ID",
+      "success": true,
+      "message": "Successfully handled patient_id parameter, returned CSV with 11 lines",
+      "details": null,
+      "timestamp": "2025-08-31T21:24:10.177796"
+    },
+    {
+      "test": "CSV Content Verification",
+      "success": false,
+      "message": "Invalid date format in row 1: invalid-date",
+      "details": null,
+      "timestamp": "2025-08-31T21:24:10.736656"
     },
     {
       "test": "Existing Endpoint - Stats Overview",
       "success": true,
       "message": "Statistics overview endpoint still working",
       "details": null,
-      "timestamp": "2025-08-31T21:09:04.821646"
+      "timestamp": "2025-08-31T21:24:11.290961"
     },
     {
       "test": "Existing Endpoint - Entries",
       "success": true,
       "message": "Entries endpoint still working",
       "details": null,
-      "timestamp": "2025-08-31T21:09:04.871438"
+      "timestamp": "2025-08-31T21:24:11.342883"
     },
     {
       "test": "Data Validation - Invalid Date",
-      "success": false,
-      "message": "Invalid date was accepted (status 200)",
+      "success": true,
+      "message": "Invalid date correctly rejected with status 400",
       "details": null,
-      "timestamp": "2025-08-31T21:09:05.661314"
+      "timestamp": "2025-08-31T21:24:11.918256"
     }
   ]
 }
