@@ -342,8 +342,8 @@ const HomePage = () => {
         {activeTab === 'profile' && (
           <div className="space-y-6">
             <div className="bg-white rounded-3xl p-8 shadow-sm border border-gray-100 text-center">
-              <div className="w-20 h-20 bg-gradient-to-r from-green-100 to-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl">🌱</span>
+              <div className="w-20 h-20 bg-gradient-to-r from-green-100 to-blue-100 rounded-full flex items-center justify-center mx-auto mb-4 p-4">
+                <LeafLogo className="w-full h-full" color="#059669" />
               </div>
               <h3 className="text-xl font-semibold text-gray-800 mb-1">Il tuo percorso di benessere</h3>
               <p className="text-gray-500 text-sm">con il Dr. Mauro De Luca</p>
