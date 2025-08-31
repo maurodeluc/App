@@ -237,6 +237,18 @@ backend:
           agent: "testing"
           comment: "✅ NEW ENDPOINT: GET /api/stats/mood-trend working correctly - Returns proper mood trend data with date, mood_id (1-5), mood_name (Italian), mood_emoji, mood_color, activities_count, and note. Tested with default 90 days, custom days parameters (30,60,90,180,365), and patient_id parameter. All response formats match expected structure."
 
+  - task: "CSV Export API"
+    implemented: true
+    working: true
+    file: "backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: true
+          agent: "testing"
+          comment: "✅ NEW ENDPOINT: GET /api/export/csv working perfectly - Returns downloadable CSV file with proper Content-Type (text/csv) and Content-Disposition headers. CSV structure verified with correct headers (Data, Umore, Livello_Umore, Emoji, Attività, Note, Data_Creazione), mood entries data, statistics section (=== STATISTICHE RIASSUNTIVE ===), and mood distribution section (=== DISTRIBUZIONE UMORE ===). Supports patient_id parameter. All 6 focused tests passed (100% success rate). Ready for production use."
+
 frontend:
   - task: "LEAF Header and Branding"
     implemented: true
