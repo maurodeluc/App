@@ -141,6 +141,7 @@ const HomePage = () => {
                   <MoodSelector 
                     selectedMood={todayMood}
                     onMoodSelect={setTodayMood}
+                    moodLevels={moodLevels}
                   />
                 </div>
 
