@@ -5,80 +5,94 @@ const LeafLogo = ({ className = "w-10 h-10", color = "currentColor" }) => {
     <svg 
       viewBox="0 0 100 100" 
       className={className}
-      fill="none" 
+      fill={color} 
       xmlns="http://www.w3.org/2000/svg"
     >
-      {/* Tronco principale */}
+      {/* Tronco curvo principale */}
       <path
-        d="M45 65 L45 85 L55 85 L55 65"
-        stroke={color}
-        strokeWidth="4"
-        strokeLinecap="round"
+        d="M50 85 
+           Q45 80 43 75
+           Q40 65 42 55
+           Q44 45 48 40
+           Q50 38 50 35"
+        stroke="none"
+        fill={color}
+        strokeWidth="8"
+      />
+      
+      {/* Base del tronco */}
+      <ellipse
+        cx="50"
+        cy="85"
+        rx="6"
+        ry="4"
         fill={color}
       />
       
-      {/* Ramo centrale */}
+      {/* Foglia superiore sinistra - forma organica */}
       <path
-        d="M50 65 L50 35"
-        stroke={color}
-        strokeWidth="3"
-        strokeLinecap="round"
-      />
-      
-      {/* Foglia superiore sinistra */}
-      <path
-        d="M50 35 Q35 25 30 35 Q35 45 50 35"
+        d="M50 35
+           Q35 25 25 30
+           Q20 35 22 42
+           Q25 48 35 50
+           Q45 48 50 40
+           Z"
         fill={color}
-        stroke={color}
-        strokeWidth="1.5"
       />
       
-      {/* Foglia superiore destra */}
+      {/* Foglia superiore destra - forma organica */}
       <path
-        d="M50 35 Q65 25 70 35 Q65 45 50 35"
+        d="M50 35
+           Q65 25 75 30
+           Q80 35 78 42
+           Q75 48 65 50
+           Q55 48 50 40
+           Z"
         fill={color}
-        stroke={color}
-        strokeWidth="1.5"
       />
       
-      {/* Foglia media sinistra */}
+      {/* Foglia media sinistra - più grande */}
       <path
-        d="M48 50 Q33 40 28 50 Q33 60 48 50"
+        d="M48 50
+           Q30 40 20 45
+           Q15 50 17 58
+           Q20 65 32 68
+           Q44 65 48 55
+           Z"
         fill={color}
-        stroke={color}
-        strokeWidth="1.5"
       />
       
-      {/* Foglia media destra */}
+      {/* Foglia media destra - più grande */}
       <path
-        d="M52 50 Q67 40 72 50 Q67 60 52 50"
+        d="M52 50
+           Q70 40 80 45
+           Q85 50 83 58
+           Q80 65 68 68
+           Q56 65 52 55
+           Z"
         fill={color}
-        stroke={color}
-        strokeWidth="1.5"
       />
       
-      {/* Foglia inferiore sinistra */}
+      {/* Foglia inferiore sinistra - più ampia */}
       <path
-        d="M47 62 Q32 52 27 62 Q32 72 47 62"
+        d="M45 65
+           Q25 55 15 60
+           Q10 65 12 73
+           Q15 80 28 82
+           Q40 78 45 70
+           Z"
         fill={color}
-        stroke={color}
-        strokeWidth="1.5"
       />
       
-      {/* Foglia inferiore destra */}
+      {/* Foglia inferiore destra - più ampia */}
       <path
-        d="M53 62 Q68 52 73 62 Q68 72 53 62"
+        d="M55 65
+           Q75 55 85 60
+           Q90 65 88 73
+           Q85 80 72 82
+           Q60 78 55 70
+           Z"
         fill={color}
-        stroke={color}
-        strokeWidth="1.5"
-      />
-      
-      {/* Rami collegamento */}
-      <path
-        d="M50 45 L48 50 M50 45 L52 50 M50 55 L47 62 M50 55 L53 62"
-        stroke={color}
-        strokeWidth="2"
-        strokeLinecap="round"
       />
     </svg>
   );
