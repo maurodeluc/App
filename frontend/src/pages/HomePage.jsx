@@ -261,13 +261,13 @@ const HomePage = () => {
                       Ho notato che hai registrato alcuni momenti difficili. Ricorda che chiedere aiuto è un segno di forza.
                     </p>
                     <a
-                      href="https://www.miodottore.it"
+                      href="https://www.miodottore.it/mauro-de-luca/psicologo-psicoterapeuta-psicologo-clinico/taranto#address-id=289784&is-online-only=false&filters%5Bspecializations%5D%5B%5D=12"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 bg-gradient-to-r from-orange-500 to-red-500 text-white px-6 py-3 rounded-2xl font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 text-sm"
                     >
                       <span>💬</span>
-                      <span>Parliamone insieme</span>
+                      <span>Parliamone con Dr. De Luca</span>
                     </a>
                   </div>
                 </div>
