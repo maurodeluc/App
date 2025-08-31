@@ -60,19 +60,29 @@ const HomePage = () => {
     });
   };
 
-  const saveTodayEntry = () => {
+  const saveTodayEntry = async () => {
     if (todayMood) {
-      // In una vera app, questo salverebbe nel database
-      console.log('Salvando entry:', {
-        date: today,
-        mood: todayMood,
-        activities: todayActivities,
-        note: todayNote
-      });
-      
-      // Simula il salvataggio
-      setShowAddEntry(false);
-      alert('Entry salvata con successo!');
+      try {
+        const entryData = {
+          date: today,
+          mood: todayMood,
+          activities: todayActivities,
+          note: todayNote
+        };
+        
+        await createEntry(entryData);
+        
+        // Reset form
+        setTodayMood(null);
+        setTodayActivities([]);
+        setTodayNote('');
+        setShowAddEntry(false);
+        
+        alert('Entry salvata con successo!');
+      } catch (error) {
+        console.error('Errore nel salvare l\'entry:', error);
+        alert('Errore nel salvare l\'entry. Riprova.');
+      }
     }
   };
 
