@@ -1,7 +1,6 @@
 import React from 'react';
-import { moodLevels } from '../data/mockData';
 
-const MoodSelector = ({ selectedMood, onMoodSelect, size = 'large' }) => {
+const MoodSelector = ({ selectedMood, onMoodSelect, moodLevels = [], size = 'large' }) => {
   const sizeClasses = {
     small: 'w-8 h-8 text-lg',
     medium: 'w-12 h-12 text-2xl',
