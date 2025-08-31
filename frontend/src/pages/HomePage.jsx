@@ -138,12 +138,13 @@ const HomePage = () => {
     
     const url = 'https://www.miodottore.it/mauro-de-luca/psicologo-psicoterapeuta-psicologo-clinico/taranto';
     
-    // iOS-friendly link opening
-    if (navigator.userAgent.includes('iPhone') || navigator.userAgent.includes('iPad')) {
-      // On iOS, open in same tab to avoid popup blockers
+    // More compatible approach for all devices
+    try {
+      // Try to open in same window first (avoids popup blockers on iOS)
       window.location.href = url;
-    } else {
-      // On other devices, open in new tab
+    } catch (error) {
+      // Fallback: try opening in new tab
+      console.log('Fallback: opening in new tab');
       window.open(url, '_blank', 'noopener,noreferrer');
     }
   };
