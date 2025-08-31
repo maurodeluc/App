@@ -548,6 +548,151 @@ class LEAFBackendTester:
             self.log_test("Create Additional Entries", False, f"Only created {success_count}/{total_attempts} entries")
             return False
     
+    def test_mood_trend_default(self):
+        """Test GET /api/stats/mood-trend - default behavior (90 days)"""
+        print("\n=== Testing Mood Trend (Default 90 days) ===")
+        
+        response, success, error = self.make_request("GET", "/stats/mood-trend")
+        
+        if not success:
+            self.log_test("Mood Trend Default", False, f"Request failed: {error}")
+            return False
+        
+        if response.status_code == 200:
+            try:
+                trend_data = response.json()
+                
+                # Verify it's a list
+                if not isinstance(trend_data, list):
+                    self.log_test("Mood Trend Default", False, "Response is not a list", trend_data)
+                    return False
+                
+                # If we have data, verify structure
+                if len(trend_data) > 0:
+                    required_fields = ["date", "mood_id", "mood_name", "mood_emoji", "mood_color", "activities_count", "note"]
+                    for entry in trend_data:
+                        for field in required_fields:
+                            if field not in entry:
+                                self.log_test("Mood Trend Default", False, f"Missing field '{field}' in trend entry", entry)
+                                return False
+                        
+                        # Verify data types
+                        if not isinstance(entry["mood_id"], int) or entry["mood_id"] < 1 or entry["mood_id"] > 5:
+                            self.log_test("Mood Trend Default", False, f"Invalid mood_id: {entry['mood_id']}", entry)
+                            return False
+                        
+                        if not isinstance(entry["activities_count"], int) or entry["activities_count"] < 0:
+                            self.log_test("Mood Trend Default", False, f"Invalid activities_count: {entry['activities_count']}", entry)
+                            return False
+                        
+                        # Verify date format (YYYY-MM-DD)
+                        try:
+                            datetime.strptime(entry["date"], "%Y-%m-%d")
+                        except ValueError:
+                            self.log_test("Mood Trend Default", False, f"Invalid date format: {entry['date']}", entry)
+                            return False
+                        
+                        # Verify Italian mood names
+                        expected_moods = ["molto male", "male", "neutro", "bene", "molto bene"]
+                        if entry["mood_name"] not in expected_moods:
+                            self.log_test("Mood Trend Default", False, f"Invalid mood name: {entry['mood_name']}", entry)
+                            return False
+                
+                self.log_test("Mood Trend Default", True, f"Successfully retrieved mood trend data with {len(trend_data)} entries", trend_data)
+                return True
+                
+            except json.JSONDecodeError:
+                self.log_test("Mood Trend Default", False, "Invalid JSON response", response.text)
+                return False
+        else:
+            self.log_test("Mood Trend Default", False, f"HTTP {response.status_code}", response.text)
+            return False
+    
+    def test_mood_trend_with_days_parameter(self):
+        """Test GET /api/stats/mood-trend with different days parameters"""
+        print("\n=== Testing Mood Trend with Days Parameter ===")
+        
+        test_days = [30, 60, 90, 180, 365]
+        success_count = 0
+        
+        for days in test_days:
+            response, success, error = self.make_request("GET", "/stats/mood-trend", params={"days": days})
+            
+            if not success:
+                self.log_test(f"Mood Trend {days} days", False, f"Request failed: {error}")
+                continue
+            
+            if response.status_code == 200:
+                try:
+                    trend_data = response.json()
+                    
+                    if isinstance(trend_data, list):
+                        self.log_test(f"Mood Trend {days} days", True, f"Successfully retrieved trend data for {days} days with {len(trend_data)} entries")
+                        success_count += 1
+                    else:
+                        self.log_test(f"Mood Trend {days} days", False, "Response is not a list", trend_data)
+                        
+                except json.JSONDecodeError:
+                    self.log_test(f"Mood Trend {days} days", False, "Invalid JSON response", response.text)
+            else:
+                self.log_test(f"Mood Trend {days} days", False, f"HTTP {response.status_code}", response.text)
+        
+        return success_count == len(test_days)
+    
+    def test_mood_trend_with_patient_id(self):
+        """Test GET /api/stats/mood-trend with patient_id parameter"""
+        print("\n=== Testing Mood Trend with Patient ID ===")
+        
+        response, success, error = self.make_request("GET", "/stats/mood-trend", params={"patient_id": "test_patient", "days": 30})
+        
+        if not success:
+            self.log_test("Mood Trend with Patient ID", False, f"Request failed: {error}")
+            return False
+        
+        if response.status_code == 200:
+            try:
+                trend_data = response.json()
+                
+                if isinstance(trend_data, list):
+                    # Should be empty for non-existent patient
+                    self.log_test("Mood Trend with Patient ID", True, f"Successfully handled patient_id parameter, returned {len(trend_data)} entries")
+                    return True
+                else:
+                    self.log_test("Mood Trend with Patient ID", False, "Response is not a list", trend_data)
+                    return False
+                    
+            except json.JSONDecodeError:
+                self.log_test("Mood Trend with Patient ID", False, "Invalid JSON response", response.text)
+                return False
+        else:
+            self.log_test("Mood Trend with Patient ID", False, f"HTTP {response.status_code}", response.text)
+            return False
+    
+    def test_existing_endpoints_verification(self):
+        """Quick verification that existing endpoints still work"""
+        print("\n=== Testing Existing Endpoints Verification ===")
+        
+        success_count = 0
+        total_tests = 2
+        
+        # Test statistics overview
+        response, success, error = self.make_request("GET", "/stats/overview")
+        if success and response.status_code == 200:
+            self.log_test("Existing Endpoint - Stats Overview", True, "Statistics overview endpoint still working")
+            success_count += 1
+        else:
+            self.log_test("Existing Endpoint - Stats Overview", False, f"Statistics overview failed: {error or response.status_code}")
+        
+        # Test entries endpoint
+        response, success, error = self.make_request("GET", "/entries")
+        if success and response.status_code == 200:
+            self.log_test("Existing Endpoint - Entries", True, "Entries endpoint still working")
+            success_count += 1
+        else:
+            self.log_test("Existing Endpoint - Entries", False, f"Entries endpoint failed: {error or response.status_code}")
+        
+        return success_count == total_tests
+    
     def test_data_validation(self):
         """Test data validation scenarios"""
         print("\n=== Testing Data Validation ===")
