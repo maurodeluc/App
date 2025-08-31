@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { Calendar, TrendingUp } from 'lucide-react';
-import api from '../services/api';
+import ApiService from '../services/api';
 
 const MoodChart = () => {
   const [chartData, setChartData] = useState([]);
