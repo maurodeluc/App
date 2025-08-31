@@ -6,6 +6,7 @@ import Calendar from '../components/Calendar';
 import EntryCard from '../components/EntryCard';
 import LeafLogo from '../components/LeafLogo';
 import MoodChart from '../components/MoodChart';
+import ExportData from '../components/ExportData';
 import { useEntries } from '../hooks/useEntries';
 import { useReferenceData, useStatistics } from '../hooks/useReferenceData';
 
