@@ -66,7 +66,7 @@ textarea:focus-visible {
   }
 }
 
-/* Prevent zoom on inputs on iOS */
+/* iOS optimizations */
 @media screen and (-webkit-min-device-pixel-ratio: 0) {
   select,
   textarea,
@@ -85,5 +85,45 @@ textarea:focus-visible {
   input[type="tel"],
   input[type="color"] {
     font-size: 16px;
+  }
+}
+
+/* iOS safe area support */
+@supports (padding: max(0px)) {
+  .safe-area-inset-bottom {
+    padding-bottom: max(8px, env(safe-area-inset-bottom));
+  }
+  
+  .pb-safe {
+    padding-bottom: max(4px, env(safe-area-inset-bottom));
+  }
+}
+
+/* Disable iOS bounce scroll */
+body {
+  overscroll-behavior: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Better touch targets for iOS */
+button, a, [role="button"] {
+  min-height: 44px;
+  min-width: 44px;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+/* Fix iOS viewport issues */
+@media screen and (max-width: 767px) {
+  html {
+    height: -webkit-fill-available;
+  }
+  
+  body {
+    min-height: -webkit-fill-available;
+  }
+  
+  .min-h-screen {
+    min-height: -webkit-fill-available;
   }
 }
