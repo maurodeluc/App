@@ -1,8 +1,8 @@
 {
-  "timestamp": "2025-08-31T19:25:03.483808",
+  "timestamp": "2025-08-31T21:09:06.163613",
   "base_url": "https://leaf-therapy.preview.emergentagent.com/api",
-  "total_tests": 12,
-  "passed": 8,
+  "total_tests": 21,
+  "passed": 17,
   "failed": 4,
   "results": [
     {
@@ -12,7 +12,7 @@
       "details": {
         "message": "LEAF API - Laboratorio di Educazione Alla Felicit\u00e0"
       },
-      "timestamp": "2025-08-31T19:24:56.771328"
+      "timestamp": "2025-08-31T21:08:56.675304"
     },
     {
       "test": "Mood Levels",
@@ -55,7 +55,7 @@
           "order": 5
         }
       ],
-      "timestamp": "2025-08-31T19:24:57.322671"
+      "timestamp": "2025-08-31T21:08:57.229801"
     },
     {
       "test": "Activity Categories",
@@ -243,28 +243,13 @@
           ]
         }
       ],
-      "timestamp": "2025-08-31T19:24:57.875087"
+      "timestamp": "2025-08-31T21:08:57.793825"
     },
     {
       "test": "Get All Entries (Empty)",
       "success": true,
-      "message": "Successfully retrieved 5 entries",
+      "message": "Successfully retrieved 4 entries",
       "details": [
-        {
-          "id": "11390853-c147-4763-b300-8fa4eedf8fd8",
-          "date": "invalid-date",
-          "mood": {
-            "id": 3,
-            "name": "neutro",
-            "emoji": "\ud83d\ude10",
-            "color": "#FFD23F"
-          },
-          "activities": [],
-          "note": "Test con data invalida",
-          "created_at": "2025-08-31T17:55:47.700000",
-          "updated_at": "2025-08-31T17:55:47.700000",
-          "patient_id": "default"
-        },
         {
           "id": "dcda53bb-4149-403a-937e-f64a500d3bd4",
           "date": "2025-08-31",
@@ -396,14 +381,14 @@
           "patient_id": "default"
         }
       ],
-      "timestamp": "2025-08-31T19:24:58.427958"
+      "timestamp": "2025-08-31T21:08:58.348743"
     },
     {
       "test": "Create Mood Entry",
       "success": false,
       "message": "HTTP 400",
       "details": "{\"detail\":\"Entry already exists for date 2025-08-31\"}",
-      "timestamp": "2025-08-31T19:24:58.977839"
+      "timestamp": "2025-08-31T21:08:58.907289"
     },
     {
       "test": "Create Duplicate Entry",
@@ -412,7 +397,7 @@
       "details": {
         "detail": "Entry already exists for date 2025-08-31"
       },
-      "timestamp": "2025-08-31T19:24:59.534134"
+      "timestamp": "2025-08-31T21:08:59.458204"
     },
     {
       "test": "Get Entry By Date",
@@ -482,7 +467,7 @@
         "updated_at": "2025-08-31T17:26:18.226000",
         "patient_id": "default"
       },
-      "timestamp": "2025-08-31T19:25:00.088472"
+      "timestamp": "2025-08-31T21:09:00.015183"
     },
     {
       "test": "Get Non-existent Entry",
@@ -491,28 +476,13 @@
       "details": {
         "detail": "No entry found for date 2026-08-31"
       },
-      "timestamp": "2025-08-31T19:25:00.644567"
+      "timestamp": "2025-08-31T21:09:00.573036"
     },
     {
       "test": "Get All Entries (With Data)",
       "success": true,
-      "message": "Successfully retrieved 5 entries",
+      "message": "Successfully retrieved 4 entries",
       "details": [
-        {
-          "id": "11390853-c147-4763-b300-8fa4eedf8fd8",
-          "date": "invalid-date",
-          "mood": {
-            "id": 3,
-            "name": "neutro",
-            "emoji": "\ud83d\ude10",
-            "color": "#FFD23F"
-          },
-          "activities": [],
-          "note": "Test con data invalida",
-          "created_at": "2025-08-31T17:55:47.700000",
-          "updated_at": "2025-08-31T17:55:47.700000",
-          "patient_id": "default"
-        },
         {
           "id": "dcda53bb-4149-403a-937e-f64a500d3bd4",
           "date": "2025-08-31",
@@ -644,28 +614,144 @@
           "patient_id": "default"
         }
       ],
-      "timestamp": "2025-08-31T19:25:01.200341"
+      "timestamp": "2025-08-31T21:09:01.154233"
     },
     {
       "test": "Create Additional Entries",
       "success": false,
       "message": "Only created 0/3 entries",
       "details": null,
-      "timestamp": "2025-08-31T19:25:01.873661"
+      "timestamp": "2025-08-31T21:09:01.839575"
     },
     {
       "test": "Statistics Overview",
-      "success": false,
-      "message": "HTTP 500",
-      "details": "{\"detail\":\"time data 'invalid-date' does not match format '%Y-%m-%d'\"}",
-      "timestamp": "2025-08-31T19:25:02.427913"
+      "success": true,
+      "message": "Successfully retrieved statistics: 4 entries, streak: 4",
+      "details": {
+        "total_entries": 4,
+        "current_streak": 4,
+        "average_mood": "neutro \ud83d\ude0a",
+        "most_common_activities": [
+          "Esercizio fisico",
+          "Alimentazione sana",
+          "Pasti regolari",
+          "Idratazione",
+          "Famiglia"
+        ],
+        "mood_distribution": {
+          "bene": 2,
+          "male": 1,
+          "neutro": 1
+        }
+      },
+      "timestamp": "2025-08-31T21:09:02.392496"
+    },
+    {
+      "test": "Mood Trend Default",
+      "success": true,
+      "message": "Successfully retrieved mood trend data with 4 entries",
+      "details": [
+        {
+          "date": "2025-08-28",
+          "mood_id": 4,
+          "mood_name": "bene",
+          "mood_emoji": "\ud83d\ude0a",
+          "mood_color": "#6BCF7F",
+          "activities_count": 1,
+          "note": "Entry di test per il giorno 2025-08-28"
+        },
+        {
+          "date": "2025-08-29",
+          "mood_id": 3,
+          "mood_name": "neutro",
+          "mood_emoji": "\ud83d\ude10",
+          "mood_color": "#FFD23F",
+          "activities_count": 1,
+          "note": "Entry di test per il giorno 2025-08-29"
+        },
+        {
+          "date": "2025-08-30",
+          "mood_id": 2,
+          "mood_name": "male",
+          "mood_emoji": "\ud83d\ude14",
+          "mood_color": "#FF8E53",
+          "activities_count": 1,
+          "note": "Entry di test per il giorno 2025-08-30"
+        },
+        {
+          "date": "2025-08-31",
+          "mood_id": 4,
+          "mood_name": "bene",
+          "mood_emoji": "\ud83d\ude0a",
+          "mood_color": "#6BCF7F",
+          "activities_count": 8,
+          "note": ""
+        }
+      ],
+      "timestamp": "2025-08-31T21:09:02.945975"
+    },
+    {
+      "test": "Mood Trend 30 days",
+      "success": true,
+      "message": "Successfully retrieved trend data for 30 days with 4 entries",
+      "details": null,
+      "timestamp": "2025-08-31T21:09:03.497531"
+    },
+    {
+      "test": "Mood Trend 60 days",
+      "success": true,
+      "message": "Successfully retrieved trend data for 60 days with 4 entries",
+      "details": null,
+      "timestamp": "2025-08-31T21:09:03.550706"
+    },
+    {
+      "test": "Mood Trend 90 days",
+      "success": true,
+      "message": "Successfully retrieved trend data for 90 days with 4 entries",
+      "details": null,
+      "timestamp": "2025-08-31T21:09:03.606902"
+    },
+    {
+      "test": "Mood Trend 180 days",
+      "success": true,
+      "message": "Successfully retrieved trend data for 180 days with 4 entries",
+      "details": null,
+      "timestamp": "2025-08-31T21:09:03.661383"
+    },
+    {
+      "test": "Mood Trend 365 days",
+      "success": true,
+      "message": "Successfully retrieved trend data for 365 days with 4 entries",
+      "details": null,
+      "timestamp": "2025-08-31T21:09:03.716839"
+    },
+    {
+      "test": "Mood Trend with Patient ID",
+      "success": true,
+      "message": "Successfully handled patient_id parameter, returned 0 entries",
+      "details": null,
+      "timestamp": "2025-08-31T21:09:04.268723"
+    },
+    {
+      "test": "Existing Endpoint - Stats Overview",
+      "success": true,
+      "message": "Statistics overview endpoint still working",
+      "details": null,
+      "timestamp": "2025-08-31T21:09:04.821646"
+    },
+    {
+      "test": "Existing Endpoint - Entries",
+      "success": true,
+      "message": "Entries endpoint still working",
+      "details": null,
+      "timestamp": "2025-08-31T21:09:04.871438"
     },
     {
       "test": "Data Validation - Invalid Date",
-      "success": true,
-      "message": "Invalid date correctly rejected with status 400",
+      "success": false,
+      "message": "Invalid date was accepted (status 200)",
       "details": null,
-      "timestamp": "2025-08-31T19:25:02.981713"
+      "timestamp": "2025-08-31T21:09:05.661314"
     }
   ]
 }
