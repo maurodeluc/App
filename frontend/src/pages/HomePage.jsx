@@ -313,6 +313,34 @@ const HomePage = () => {
               <p className="text-gray-500 text-sm">LEAF - Laboratorio di Educazione Alla Felicità</p>
             </div>
 
+            {/* Prenota Consulenza - Call to Action */}
+            <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-3xl p-6 shadow-sm border border-green-100">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-gradient-to-r from-green-400 to-blue-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <span className="text-white text-2xl">📅</span>
+                </div>
+                <h4 className="text-lg font-semibold text-gray-800 mb-2">Hai bisogno di supporto?</h4>
+                <p className="text-gray-600 text-sm mb-6 leading-relaxed">
+                  Prenota una consulenza online con il nostro team di psicoterapia cognitivo comportamentale
+                </p>
+                <a
+                  href="https://www.miodottore.it"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 bg-gradient-to-r from-green-500 to-blue-500 text-white px-8 py-4 rounded-2xl font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+                >
+                  <span>📞</span>
+                  <span>Prenota su MioDottore</span>
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </a>
+                <p className="text-xs text-gray-500 mt-3">
+                  Sessioni online sicure e professionali
+                </p>
+              </div>
+            </div>
+
             <div className="bg-white rounded-3xl p-6 shadow-sm border border-gray-100">
               <h4 className="font-semibold text-gray-800 mb-4">Il tuo progresso</h4>
               {statistics && (
@@ -331,6 +359,29 @@ const HomePage = () => {
                   </div>
                 </div>
               )}
+            </div>
+
+            {/* Informazioni Studio */}
+            <div className="bg-white rounded-3xl p-6 shadow-sm border border-gray-100">
+              <h4 className="font-semibold text-gray-800 mb-4">Il nostro studio</h4>
+              <div className="space-y-3 text-sm text-gray-600">
+                <div className="flex items-center gap-3">
+                  <span className="text-green-500">🏥</span>
+                  <span>Psicoterapia Cognitivo Comportamentale</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <span className="text-blue-500">💻</span>
+                  <span>Consulenze online disponibili</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <span className="text-purple-500">🎯</span>
+                  <span>Approccio basato su evidenze scientifiche</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <span className="text-orange-500">🤝</span>
+                  <span>Supporto continuo al tuo benessere</span>
+                </div>
+              </div>
             </div>
           </div>
         )}
