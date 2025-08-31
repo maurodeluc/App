@@ -8,87 +8,64 @@ const LeafLogo = ({ className = "w-10 h-10", color = "currentColor" }) => {
       fill="none" 
       xmlns="http://www.w3.org/2000/svg"
     >
-      {/* Contorno foglia stilizzata */}
+      {/* Stelo principale curvo che cresce */}
       <path
-        d="M50 10 
-           Q30 20 25 35
-           Q20 50 25 65
-           Q35 80 50 85
-           Q65 80 75 65
-           Q80 50 75 35
-           Q70 20 50 10 Z"
+        d="M50 85 Q45 70 48 55 Q52 40 50 25 Q48 15 50 10"
+        stroke={color}
+        strokeWidth="4"
+        strokeLinecap="round"
+        fill="none"
+      />
+      
+      {/* Prima foglia piccola - simbolo di inizio crescita */}
+      <ellipse
+        cx="45" cy="60"
+        rx="8" ry="12"
+        transform="rotate(-30 45 60)"
+        fill={color}
+        opacity="0.8"
+      />
+      
+      {/* Seconda foglia più grande - crescita in atto */}
+      <ellipse
+        cx="55" cy="40"
+        rx="12" ry="18"
+        transform="rotate(20 55 40)"
         fill={color}
         opacity="0.9"
       />
       
-      {/* Nervatura centrale prominente */}
-      <line
-        x1="50" y1="15"
-        x2="50" y2="80"
-        stroke="white"
-        strokeWidth="3"
-        strokeLinecap="round"
+      {/* Gemma in cima - potenziale di crescita */}
+      <circle
+        cx="50" cy="10"
+        r="4"
+        fill={color}
       />
       
-      {/* Nervature laterali sinistre - ben visibili */}
-      <path
-        d="M50 25 Q38 30 32 40"
-        stroke="white"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        fill="none"
-      />
-      <path
-        d="M50 35 Q38 40 32 50"
-        stroke="white"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        fill="none"
-      />
-      <path
-        d="M50 45 Q38 50 32 60"
-        stroke="white"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        fill="none"
-      />
-      <path
-        d="M50 55 Q40 60 35 70"
-        stroke="white"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        fill="none"
-      />
-      
-      {/* Nervature laterali destre - ben visibili */}
-      <path
-        d="M50 25 Q62 30 68 40"
-        stroke="white"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        fill="none"
-      />
-      <path
-        d="M50 35 Q62 40 68 50"
-        stroke="white"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        fill="none"
-      />
-      <path
-        d="M50 45 Q62 50 68 60"
-        stroke="white"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        fill="none"
-      />
-      <path
-        d="M50 55 Q60 60 65 70"
-        stroke="white"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        fill="none"
-      />
+      {/* Linee di movimento/leggerezza */}
+      <g opacity="0.4">
+        <path
+          d="M65 25 Q70 20 75 25"
+          stroke={color}
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          fill="none"
+        />
+        <path
+          d="M70 35 Q75 30 80 35"
+          stroke={color}
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          fill="none"
+        />
+        <path
+          d="M25 45 Q30 40 35 45"
+          stroke={color}
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          fill="none"
+        />
+      </g>
     </svg>
   );
 };
