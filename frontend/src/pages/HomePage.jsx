@@ -129,6 +129,23 @@ const HomePage = () => {
     }
   };
 
+  // Handle MioDottore booking link for iOS
+  const handleBookingClick = (e) => {
+    e.preventDefault();
+    console.log('Opening MioDottore booking...');
+    
+    const url = 'https://www.miodottore.it/mauro-de-luca/psicologo-psicoterapeuta-psicologo-clinico/taranto';
+    
+    // iOS-friendly link opening
+    if (navigator.userAgent.includes('iPhone') || navigator.userAgent.includes('iPad')) {
+      // On iOS, open in same tab to avoid popup blockers
+      window.location.href = url;
+    } else {
+      // On other devices, open in new tab
+      window.open(url, '_blank', 'noopener,noreferrer');
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-green-50">
       
