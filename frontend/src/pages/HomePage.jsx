@@ -390,6 +390,9 @@ const HomePage = () => {
               <p className="text-gray-500 text-sm">con il Dr. Mauro De Luca</p>
             </div>
 
+            {/* Export Data Component */}
+            <ExportData />
+
             {/* Prenota Consulenza - Call to Action */}
             <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-3xl p-6 shadow-sm border border-green-100">
               <div className="text-center">
