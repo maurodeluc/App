@@ -8,21 +8,61 @@ const LeafLogo = ({ className = "w-10 h-10", color = "currentColor" }) => {
       fill="none" 
       xmlns="http://www.w3.org/2000/svg"
     >
-      {/* Foglia minimalista */}
+      {/* Foglia realistica */}
       <path
-        d="M20 80 Q50 20 80 80 Q50 60 20 80 Z"
+        d="M50 15 
+           Q65 25 70 40
+           Q72 55 65 70
+           Q55 80 50 85
+           Q45 80 35 70
+           Q28 55 30 40
+           Q35 25 50 15 Z"
         fill={color}
-        stroke={color}
-        strokeWidth="2"
       />
       
       {/* Nervatura centrale */}
-      <path
-        d="M20 80 Q50 50 80 80"
+      <line
+        x1="50"
+        y1="20" 
+        x2="50"
+        y2="80"
         stroke="white"
         strokeWidth="2"
-        fill="none"
         opacity="0.8"
+      />
+      
+      {/* Nervature laterali sinistra */}
+      <path
+        d="M50 35 Q40 40 35 50"
+        stroke="white"
+        strokeWidth="1"
+        fill="none"
+        opacity="0.6"
+      />
+      
+      <path
+        d="M50 50 Q40 55 35 65"
+        stroke="white"
+        strokeWidth="1"
+        fill="none"
+        opacity="0.6"
+      />
+      
+      {/* Nervature laterali destra */}
+      <path
+        d="M50 35 Q60 40 65 50"
+        stroke="white"
+        strokeWidth="1"
+        fill="none"
+        opacity="0.6"
+      />
+      
+      <path
+        d="M50 50 Q60 55 65 65"
+        stroke="white"
+        strokeWidth="1"
+        fill="none"
+        opacity="0.6"
       />
     </svg>
   );
