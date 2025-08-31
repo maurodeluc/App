@@ -366,9 +366,12 @@ metadata:
 
 test_plan:
   current_focus:
-    - "All backend API endpoints tested and working"
-  stuck_tasks: []
-  test_all: false
+    - "Statistics API date format fix needed"
+    - "Entry date display correction required"
+  stuck_tasks: 
+    - "Statistics Display"
+    - "Entry Date Display"
+  test_all: true
   test_priority: "high_first"
 
 agent_communication:
