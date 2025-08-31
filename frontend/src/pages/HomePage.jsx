@@ -496,12 +496,25 @@ const HomePage = () => {
               return (
                 <button
                   key={tab.id}
-                  onClick={() => handleTabChange(tab.id)}
-                  className={`flex flex-col items-center gap-1 py-2 px-4 rounded-2xl transition-all duration-300 ${
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    handleTabChange(tab.id);
+                  }}
+                  onTouchEnd={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    handleTabChange(tab.id);
+                  }}
+                  className={`flex flex-col items-center gap-1 py-3 px-5 rounded-2xl transition-all duration-300 active:scale-95 ${
                     isActive
-                      ? 'bg-gradient-to-r from-green-100 to-blue-100 text-green-600 scale-105'
-                      : 'text-gray-400 hover:text-gray-600'
+                      ? 'bg-gradient-to-r from-green-100 to-blue-100 text-green-600 scale-105 shadow-md'
+                      : 'text-gray-400 hover:text-gray-600 active:bg-gray-100'
                   }`}
+                  style={{ 
+                    WebkitTapHighlightColor: 'transparent',
+                    touchAction: 'manipulation'
+                  }}
                 >
                   <Icon className={`w-5 h-5 ${isActive ? tab.color : ''}`} />
                   <span className="text-xs font-medium">{tab.label}</span>
