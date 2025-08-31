@@ -402,23 +402,33 @@ const HomePage = () => {
 
             {/* Informazioni Studio */}
             <div className="bg-white rounded-3xl p-6 shadow-sm border border-gray-100">
-              <h4 className="font-semibold text-gray-800 mb-4">Il nostro studio</h4>
+              <h4 className="font-semibold text-gray-800 mb-4">Dr. Mauro De Luca</h4>
               <div className="space-y-3 text-sm text-gray-600">
-                <div className="flex items-center gap-3">
-                  <span className="text-green-500">🏥</span>
-                  <span>Psicoterapia Cognitivo Comportamentale</span>
+                <div className="flex items-start gap-3">
+                  <span className="text-green-500 mt-0.5">🎓</span>
+                  <div>
+                    <span className="font-medium">Specializzazioni:</span><br/>
+                    Psicoterapia Cognitivo Comportamentale • Psicologia Forense • Psicologia Giuridica • Psiconcologia
+                  </div>
                 </div>
                 <div className="flex items-center gap-3">
                   <span className="text-blue-500">💻</span>
-                  <span>Consulenze online disponibili</span>
+                  <span>Consulenze online in tutta Italia</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <span className="text-purple-500">🎯</span>
-                  <span>Approccio basato su evidenze scientifiche</span>
+                  <span className="text-purple-500">📍</span>
+                  <span>Studio: CUPSI, Corso Umberto I n.127, Taranto</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <span className="text-orange-500">🤝</span>
-                  <span>Supporto continuo al tuo benessere</span>
+                  <span className="text-orange-500">⭐</span>
+                  <span>133 recensioni • Certificato Best Quality 2023-2024</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="text-red-500 mt-0.5">🎯</span>
+                  <div>
+                    <span className="font-medium">Tratto:</span><br/>
+                    Ansia • Depressione • Autismo • Comportamenti autolesivi • Gioco d'azzardo
+                  </div>
                 </div>
               </div>
             </div>
