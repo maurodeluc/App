@@ -1,0 +1,525 @@
+{
+  "timestamp": "2025-08-31T17:55:48.205116",
+  "base_url": "https://daylio-clone.preview.emergentagent.com/api",
+  "total_tests": 12,
+  "passed": 9,
+  "failed": 3,
+  "results": [
+    {
+      "test": "Health Check",
+      "success": true,
+      "message": "API is responding correctly",
+      "details": {
+        "message": "LEAF API - Laboratorio di Educazione Alla Felicit\u00e0"
+      },
+      "timestamp": "2025-08-31T17:55:41.475066"
+    },
+    {
+      "test": "Mood Levels",
+      "success": true,
+      "message": "Successfully retrieved 5 mood levels",
+      "details": [
+        {
+          "id": 1,
+          "name": "molto male",
+          "emoji": "\ud83d\ude1e",
+          "color": "#FF4747",
+          "order": 1
+        },
+        {
+          "id": 2,
+          "name": "male",
+          "emoji": "\ud83d\ude14",
+          "color": "#FF8E53",
+          "order": 2
+        },
+        {
+          "id": 3,
+          "name": "neutro",
+          "emoji": "\ud83d\ude10",
+          "color": "#FFD23F",
+          "order": 3
+        },
+        {
+          "id": 4,
+          "name": "bene",
+          "emoji": "\ud83d\ude0a",
+          "color": "#6BCF7F",
+          "order": 4
+        },
+        {
+          "id": 5,
+          "name": "molto bene",
+          "emoji": "\ud83d\ude04",
+          "color": "#4FC3F7",
+          "order": 5
+        }
+      ],
+      "timestamp": "2025-08-31T17:55:42.040264"
+    },
+    {
+      "test": "Activity Categories",
+      "success": true,
+      "message": "Successfully retrieved 6 categories with 24 total activities",
+      "details": [
+        {
+          "id": 1,
+          "name": "Benessere Fisico",
+          "activities": [
+            {
+              "id": 1,
+              "name": "Esercizio fisico",
+              "icon": "\ud83d\udcaa",
+              "category": "Benessere Fisico"
+            },
+            {
+              "id": 2,
+              "name": "Sonno ristoratore",
+              "icon": "\ud83d\ude34",
+              "category": "Benessere Fisico"
+            },
+            {
+              "id": 3,
+              "name": "Visite mediche",
+              "icon": "\ud83c\udfe5",
+              "category": "Benessere Fisico"
+            },
+            {
+              "id": 4,
+              "name": "Cure personali",
+              "icon": "\ud83e\uddf4",
+              "category": "Benessere Fisico"
+            }
+          ]
+        },
+        {
+          "id": 2,
+          "name": "Alimentazione",
+          "activities": [
+            {
+              "id": 5,
+              "name": "Cucinare",
+              "icon": "\ud83c\udf73",
+              "category": "Alimentazione"
+            },
+            {
+              "id": 6,
+              "name": "Pasti regolari",
+              "icon": "\ud83c\udf7d\ufe0f",
+              "category": "Alimentazione"
+            },
+            {
+              "id": 7,
+              "name": "Idratazione",
+              "icon": "\ud83d\udca7",
+              "category": "Alimentazione"
+            },
+            {
+              "id": 8,
+              "name": "Alimentazione sana",
+              "icon": "\ud83e\udd57",
+              "category": "Alimentazione"
+            }
+          ]
+        },
+        {
+          "id": 3,
+          "name": "Relazioni Sociali",
+          "activities": [
+            {
+              "id": 9,
+              "name": "Tempo con amici",
+              "icon": "\ud83d\udc65",
+              "category": "Relazioni Sociali"
+            },
+            {
+              "id": 10,
+              "name": "Famiglia",
+              "icon": "\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67\u200d\ud83d\udc66",
+              "category": "Relazioni Sociali"
+            },
+            {
+              "id": 11,
+              "name": "Supporto sociale",
+              "icon": "\ud83e\udd1d",
+              "category": "Relazioni Sociali"
+            },
+            {
+              "id": 12,
+              "name": "Relazione di coppia",
+              "icon": "\ud83d\udc95",
+              "category": "Relazioni Sociali"
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "name": "Attivit\u00e0 Terapeutiche",
+          "activities": [
+            {
+              "id": 13,
+              "name": "Meditazione",
+              "icon": "\ud83e\uddd8",
+              "category": "Attivit\u00e0 Terapeutiche"
+            },
+            {
+              "id": 14,
+              "name": "Respirazione",
+              "icon": "\ud83c\udf2c\ufe0f",
+              "category": "Attivit\u00e0 Terapeutiche"
+            },
+            {
+              "id": 15,
+              "name": "Journaling",
+              "icon": "\ud83d\udcdd",
+              "category": "Attivit\u00e0 Terapeutiche"
+            },
+            {
+              "id": 16,
+              "name": "Mindfulness",
+              "icon": "\ud83c\udfaf",
+              "category": "Attivit\u00e0 Terapeutiche"
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "name": "Lavoro/Studio",
+          "activities": [
+            {
+              "id": 17,
+              "name": "Produttivit\u00e0",
+              "icon": "\ud83d\udcbc",
+              "category": "Lavoro/Studio"
+            },
+            {
+              "id": 18,
+              "name": "Obiettivi raggiunti",
+              "icon": "\u2705",
+              "category": "Lavoro/Studio"
+            },
+            {
+              "id": 19,
+              "name": "Stress lavorativo",
+              "icon": "\ud83d\ude30",
+              "category": "Lavoro/Studio"
+            },
+            {
+              "id": 20,
+              "name": "Pausa/Riposo",
+              "icon": "\u2615",
+              "category": "Lavoro/Studio"
+            }
+          ]
+        },
+        {
+          "id": 6,
+          "name": "Crescita Personale",
+          "activities": [
+            {
+              "id": 21,
+              "name": "Lettura",
+              "icon": "\ud83d\udcda",
+              "category": "Crescita Personale"
+            },
+            {
+              "id": 22,
+              "name": "Apprendimento",
+              "icon": "\ud83c\udf93",
+              "category": "Crescita Personale"
+            },
+            {
+              "id": 23,
+              "name": "Creativit\u00e0",
+              "icon": "\ud83c\udfa8",
+              "category": "Crescita Personale"
+            },
+            {
+              "id": 24,
+              "name": "Riflessione",
+              "icon": "\ud83d\udcad",
+              "category": "Crescita Personale"
+            }
+          ]
+        }
+      ],
+      "timestamp": "2025-08-31T17:55:42.599784"
+    },
+    {
+      "test": "Get All Entries (Empty)",
+      "success": true,
+      "message": "Successfully retrieved 1 entries",
+      "details": [
+        {
+          "id": "dcda53bb-4149-403a-937e-f64a500d3bd4",
+          "date": "2025-08-31",
+          "mood": {
+            "id": 4,
+            "name": "bene",
+            "emoji": "\ud83d\ude0a",
+            "color": "#6BCF7F"
+          },
+          "activities": [
+            {
+              "id": 1,
+              "name": "Esercizio fisico",
+              "icon": "\ud83d\udcaa",
+              "category": "Benessere Fisico"
+            },
+            {
+              "id": 8,
+              "name": "Alimentazione sana",
+              "icon": "\ud83e\udd57",
+              "category": "Alimentazione"
+            },
+            {
+              "id": 6,
+              "name": "Pasti regolari",
+              "icon": "\ud83c\udf7d\ufe0f",
+              "category": "Alimentazione"
+            },
+            {
+              "id": 7,
+              "name": "Idratazione",
+              "icon": "\ud83d\udca7",
+              "category": "Alimentazione"
+            },
+            {
+              "id": 10,
+              "name": "Famiglia",
+              "icon": "\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67\u200d\ud83d\udc66",
+              "category": "Relazioni Sociali"
+            },
+            {
+              "id": 16,
+              "name": "Mindfulness",
+              "icon": "\ud83c\udfaf",
+              "category": "Attivit\u00e0 Terapeutiche"
+            },
+            {
+              "id": 20,
+              "name": "Pausa/Riposo",
+              "icon": "\u2615",
+              "category": "Lavoro/Studio"
+            },
+            {
+              "id": 23,
+              "name": "Creativit\u00e0",
+              "icon": "\ud83c\udfa8",
+              "category": "Crescita Personale"
+            }
+          ],
+          "note": "",
+          "created_at": "2025-08-31T17:26:18.226000",
+          "updated_at": "2025-08-31T17:26:18.226000",
+          "patient_id": "default"
+        }
+      ],
+      "timestamp": "2025-08-31T17:55:43.154026"
+    },
+    {
+      "test": "Create Mood Entry",
+      "success": false,
+      "message": "HTTP 400",
+      "details": "{\"detail\":\"Entry already exists for date 2025-08-31\"}",
+      "timestamp": "2025-08-31T17:55:43.707556"
+    },
+    {
+      "test": "Create Duplicate Entry",
+      "success": true,
+      "message": "Correctly rejected duplicate entry",
+      "details": {
+        "detail": "Entry already exists for date 2025-08-31"
+      },
+      "timestamp": "2025-08-31T17:55:44.265132"
+    },
+    {
+      "test": "Get Entry By Date",
+      "success": true,
+      "message": "Successfully retrieved entry for 2025-08-31",
+      "details": {
+        "id": "dcda53bb-4149-403a-937e-f64a500d3bd4",
+        "date": "2025-08-31",
+        "mood": {
+          "id": 4,
+          "name": "bene",
+          "emoji": "\ud83d\ude0a",
+          "color": "#6BCF7F"
+        },
+        "activities": [
+          {
+            "id": 1,
+            "name": "Esercizio fisico",
+            "icon": "\ud83d\udcaa",
+            "category": "Benessere Fisico"
+          },
+          {
+            "id": 8,
+            "name": "Alimentazione sana",
+            "icon": "\ud83e\udd57",
+            "category": "Alimentazione"
+          },
+          {
+            "id": 6,
+            "name": "Pasti regolari",
+            "icon": "\ud83c\udf7d\ufe0f",
+            "category": "Alimentazione"
+          },
+          {
+            "id": 7,
+            "name": "Idratazione",
+            "icon": "\ud83d\udca7",
+            "category": "Alimentazione"
+          },
+          {
+            "id": 10,
+            "name": "Famiglia",
+            "icon": "\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67\u200d\ud83d\udc66",
+            "category": "Relazioni Sociali"
+          },
+          {
+            "id": 16,
+            "name": "Mindfulness",
+            "icon": "\ud83c\udfaf",
+            "category": "Attivit\u00e0 Terapeutiche"
+          },
+          {
+            "id": 20,
+            "name": "Pausa/Riposo",
+            "icon": "\u2615",
+            "category": "Lavoro/Studio"
+          },
+          {
+            "id": 23,
+            "name": "Creativit\u00e0",
+            "icon": "\ud83c\udfa8",
+            "category": "Crescita Personale"
+          }
+        ],
+        "note": "",
+        "created_at": "2025-08-31T17:26:18.226000",
+        "updated_at": "2025-08-31T17:26:18.226000",
+        "patient_id": "default"
+      },
+      "timestamp": "2025-08-31T17:55:44.816602"
+    },
+    {
+      "test": "Get Non-existent Entry",
+      "success": false,
+      "message": "Wrong error message for non-existent entry",
+      "details": {
+        "detail": "No entry found for date 2026-08-31"
+      },
+      "timestamp": "2025-08-31T17:55:45.367991"
+    },
+    {
+      "test": "Get All Entries (With Data)",
+      "success": true,
+      "message": "Successfully retrieved 1 entries",
+      "details": [
+        {
+          "id": "dcda53bb-4149-403a-937e-f64a500d3bd4",
+          "date": "2025-08-31",
+          "mood": {
+            "id": 4,
+            "name": "bene",
+            "emoji": "\ud83d\ude0a",
+            "color": "#6BCF7F"
+          },
+          "activities": [
+            {
+              "id": 1,
+              "name": "Esercizio fisico",
+              "icon": "\ud83d\udcaa",
+              "category": "Benessere Fisico"
+            },
+            {
+              "id": 8,
+              "name": "Alimentazione sana",
+              "icon": "\ud83e\udd57",
+              "category": "Alimentazione"
+            },
+            {
+              "id": 6,
+              "name": "Pasti regolari",
+              "icon": "\ud83c\udf7d\ufe0f",
+              "category": "Alimentazione"
+            },
+            {
+              "id": 7,
+              "name": "Idratazione",
+              "icon": "\ud83d\udca7",
+              "category": "Alimentazione"
+            },
+            {
+              "id": 10,
+              "name": "Famiglia",
+              "icon": "\ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67\u200d\ud83d\udc66",
+              "category": "Relazioni Sociali"
+            },
+            {
+              "id": 16,
+              "name": "Mindfulness",
+              "icon": "\ud83c\udfaf",
+              "category": "Attivit\u00e0 Terapeutiche"
+            },
+            {
+              "id": 20,
+              "name": "Pausa/Riposo",
+              "icon": "\u2615",
+              "category": "Lavoro/Studio"
+            },
+            {
+              "id": 23,
+              "name": "Creativit\u00e0",
+              "icon": "\ud83c\udfa8",
+              "category": "Crescita Personale"
+            }
+          ],
+          "note": "",
+          "created_at": "2025-08-31T17:26:18.226000",
+          "updated_at": "2025-08-31T17:26:18.226000",
+          "patient_id": "default"
+        }
+      ],
+      "timestamp": "2025-08-31T17:55:45.917411"
+    },
+    {
+      "test": "Create Additional Entries",
+      "success": true,
+      "message": "Successfully created 3 additional entries",
+      "details": null,
+      "timestamp": "2025-08-31T17:55:46.603277"
+    },
+    {
+      "test": "Statistics Overview",
+      "success": true,
+      "message": "Successfully retrieved statistics: 4 entries, streak: 4",
+      "details": {
+        "total_entries": 4,
+        "current_streak": 4,
+        "average_mood": "neutro \ud83d\ude0a",
+        "most_common_activities": [
+          "Esercizio fisico",
+          "Alimentazione sana",
+          "Pasti regolari",
+          "Idratazione",
+          "Famiglia"
+        ],
+        "mood_distribution": {
+          "bene": 2,
+          "male": 1,
+          "neutro": 1
+        }
+      },
+      "timestamp": "2025-08-31T17:55:47.153833"
+    },
+    {
+      "test": "Data Validation - Invalid Date",
+      "success": false,
+      "message": "Invalid date was accepted (status 200)",
+      "details": null,
+      "timestamp": "2025-08-31T17:55:47.703379"
+    }
+  ]
+}
