@@ -432,6 +432,38 @@ const HomePage = () => {
                 </div>
               </div>
             </div>
+
+            {/* Prestazioni e Prezzi */}
+            <div className="bg-white rounded-3xl p-6 shadow-sm border border-gray-100">
+              <h4 className="font-semibold text-gray-800 mb-4">Prestazioni e Tariffe</h4>
+              <div className="space-y-3 text-sm">
+                <div className="flex justify-between items-center py-2 border-b border-gray-100">
+                  <span className="text-gray-700">Psicoterapia individuale</span>
+                  <span className="font-semibold text-green-600">80€</span>
+                </div>
+                <div className="flex justify-between items-center py-2 border-b border-gray-100">
+                  <span className="text-gray-700">Consulenza online</span>
+                  <span className="font-semibold text-blue-600">80€</span>
+                </div>
+                <div className="flex justify-between items-center py-2 border-b border-gray-100">
+                  <span className="text-gray-700">Psicoterapia di coppia</span>
+                  <span className="font-semibold text-purple-600">da 100€</span>
+                </div>
+                <div className="flex justify-between items-center py-2 border-b border-gray-100">
+                  <span className="text-gray-700">Sostegno psicologico adolescenti</span>
+                  <span className="font-semibold text-orange-600">80€</span>
+                </div>
+                <div className="flex justify-between items-center py-2">
+                  <span className="text-gray-700">Perizia psicologica legale</span>
+                  <span className="font-semibold text-red-600">da 100€</span>
+                </div>
+                <div className="bg-green-50 rounded-2xl p-3 mt-4">
+                  <p className="text-xs text-green-700">
+                    💳 Pagamento dopo la consulenza • 🔒 Sessioni riservate e professionali
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         )}
       </div>
