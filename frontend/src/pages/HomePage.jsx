@@ -148,6 +148,7 @@ const HomePage = () => {
                 <ActivitySelector
                   selectedActivities={todayActivities}
                   onActivityToggle={handleActivityToggle}
+                  activityCategories={activityCategories}
                 />
 
                 <div className="bg-white rounded-xl p-4 shadow-sm">
