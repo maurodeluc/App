@@ -487,9 +487,9 @@ const HomePage = () => {
       </div>
 
       {/* Modern Bottom Navigation */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white/80 backdrop-blur-xl border-t border-gray-100">
-        <div className="px-4 py-2">
-          <div className="flex justify-around">
+      <div className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-xl border-t border-gray-100 safe-area-inset-bottom">
+        <div className="px-2 py-1 pb-safe">
+          <div className="flex justify-around items-center min-h-[60px]">
             {tabs.map((tab) => {
               const Icon = tab.icon;
               const isActive = activeTab === tab.id;
