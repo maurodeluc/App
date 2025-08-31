@@ -936,6 +936,9 @@ class LEAFBackendTester:
             self.test_mood_trend_default,
             self.test_mood_trend_with_days_parameter,
             self.test_mood_trend_with_patient_id,
+            self.test_csv_export_default,
+            self.test_csv_export_with_patient_id,
+            self.test_csv_content_verification,
             self.test_existing_endpoints_verification,
             self.test_data_validation
         ]
