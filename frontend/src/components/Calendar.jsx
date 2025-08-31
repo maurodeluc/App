@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const Calendar = ({ onDateSelect, entries = [] }) => {
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -34,11 +35,11 @@ const Calendar = ({ onDateSelect, entries = [] }) => {
   const firstDay = getFirstDayOfMonth(currentDate);
 
   const monthNames = [
-    'January', 'February', 'March', 'April', 'May', 'June',
-    'July', 'August', 'September', 'October', 'November', 'December'
+    'Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno',
+    'Luglio', 'Agosto', 'Settembre', 'Ottobre', 'Novembre', 'Dicembre'
   ];
 
-  const dayNames = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  const dayNames = ['Dom', 'Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab'];
 
   // Create array of days
   const days = [];
@@ -54,40 +55,40 @@ const Calendar = ({ onDateSelect, entries = [] }) => {
   }
 
   return (
-    <div className="bg-white rounded-xl p-4 shadow-sm">
+    <div className="p-6">
       {/* Calendar Header */}
-      <div className="flex justify-between items-center mb-4">
+      <div className="flex justify-between items-center mb-8">
         <button
           onClick={() => navigateMonth(-1)}
-          className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+          className="p-3 hover:bg-gray-100 rounded-2xl transition-colors"
         >
-          ‹
+          <ChevronLeft className="w-5 h-5 text-gray-600" />
         </button>
-        <h2 className="text-lg font-semibold text-gray-800">
+        <h2 className="text-xl font-bold text-gray-800">
           {monthNames[month]} {year}
         </h2>
         <button
           onClick={() => navigateMonth(1)}
-          className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+          className="p-3 hover:bg-gray-100 rounded-2xl transition-colors"
         >
-          ›
+          <ChevronRight className="w-5 h-5 text-gray-600" />
         </button>
       </div>
 
       {/* Day Names */}
-      <div className="grid grid-cols-7 gap-1 mb-2">
+      <div className="grid grid-cols-7 gap-2 mb-4">
         {dayNames.map(dayName => (
-          <div key={dayName} className="text-center text-xs font-medium text-gray-500 py-2">
+          <div key={dayName} className="text-center text-sm font-medium text-gray-500 py-3">
             {dayName}
           </div>
         ))}
       </div>
 
       {/* Calendar Grid */}
-      <div className="grid grid-cols-7 gap-1">
+      <div className="grid grid-cols-7 gap-2">
         {days.map((day, index) => {
           if (!day) {
-            return <div key={index} className="h-10"></div>;
+            return <div key={index} className="h-14"></div>;
           }
 
           const entry = getEntryForDate(year, month, day);
@@ -98,26 +99,38 @@ const Calendar = ({ onDateSelect, entries = [] }) => {
               key={day}
               onClick={() => onDateSelect && onDateSelect(new Date(year, month, day))}
               className={`
-                h-10 flex items-center justify-center rounded-lg text-sm
-                transition-all duration-200 relative
-                ${isToday ? 'ring-2 ring-green-400' : ''}
-                ${entry ? 'hover:scale-105' : 'hover:bg-gray-100'}
+                h-14 flex items-center justify-center rounded-2xl text-sm font-medium
+                transition-all duration-300 relative
+                ${isToday ? 'ring-2 ring-blue-400 ring-offset-2' : ''}
+                ${entry ? 'hover:scale-105 shadow-lg' : 'hover:bg-gray-100'}
               `}
               style={{
-                backgroundColor: entry ? entry.mood.color : 'transparent'
+                backgroundColor: entry ? entry.mood.color : 'transparent',
+                color: entry ? 'white' : isToday ? '#1f2937' : '#6b7280',
+                boxShadow: entry ? `0 8px 15px -3px ${entry.mood.color}40` : 'none'
               }}
             >
-              <span className={`${entry ? 'text-white font-medium' : 'text-gray-700'}`}>
-                {day}
-              </span>
+              <span className={entry ? 'font-bold' : ''}>{day}</span>
               {entry && (
-                <div className="absolute -bottom-1 left-1/2 transform -translate-x-1/2">
-                  <div className="w-1 h-1 bg-white rounded-full"></div>
+                <div className="absolute top-1 right-1">
+                  <div className="w-2 h-2 bg-white/80 rounded-full"></div>
                 </div>
               )}
             </button>
           );
         })}
+      </div>
+
+      {/* Legend */}
+      <div className="mt-8 flex items-center justify-center gap-4 text-xs text-gray-500">
+        <div className="flex items-center gap-2">
+          <div className="w-3 h-3 bg-gray-200 rounded-full"></div>
+          <span>Nessuna entry</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <div className="w-3 h-3 bg-green-400 rounded-full"></div>
+          <span>Con entry</span>
+        </div>
       </div>
     </div>
   );
