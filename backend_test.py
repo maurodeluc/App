@@ -668,8 +668,198 @@ class LEAFBackendTester:
             self.log_test("Mood Trend with Patient ID", False, f"HTTP {response.status_code}", response.text)
             return False
     
+    def test_csv_export_default(self):
+        """Test GET /api/export/csv - CSV export with default patient_id"""
+        print("\n=== Testing CSV Export (Default) ===")
+        
+        response, success, error = self.make_request("GET", "/export/csv")
+        
+        if not success:
+            self.log_test("CSV Export Default", False, f"Request failed: {error}")
+            return False
+        
+        if response.status_code == 200:
+            # Check Content-Type header
+            content_type = response.headers.get('content-type', '')
+            if 'text/csv' not in content_type:
+                self.log_test("CSV Export Default", False, f"Wrong Content-Type: {content_type}")
+                return False
+            
+            # Check Content-Disposition header for download
+            content_disposition = response.headers.get('content-disposition', '')
+            if 'attachment' not in content_disposition or 'filename=' not in content_disposition:
+                self.log_test("CSV Export Default", False, f"Missing or invalid Content-Disposition: {content_disposition}")
+                return False
+            
+            # Check filename format
+            if 'LEAF_mood_data_' not in content_disposition and '.csv' not in content_disposition:
+                self.log_test("CSV Export Default", False, f"Invalid filename format: {content_disposition}")
+                return False
+            
+            # Check CSV content
+            csv_content = response.text
+            if not csv_content:
+                self.log_test("CSV Export Default", False, "Empty CSV content")
+                return False
+            
+            # Verify CSV structure
+            lines = csv_content.strip().split('\n')
+            if len(lines) < 1:
+                self.log_test("CSV Export Default", False, "CSV has no content")
+                return False
+            
+            # Check CSV headers
+            expected_headers = ['Data', 'Umore', 'Livello_Umore', 'Emoji', 'Attività', 'Note', 'Data_Creazione']
+            first_line = lines[0]
+            for header in expected_headers:
+                if header not in first_line:
+                    self.log_test("CSV Export Default", False, f"Missing CSV header: {header}")
+                    return False
+            
+            # Check for statistics section
+            if '=== STATISTICHE RIASSUNTIVE ===' not in csv_content:
+                self.log_test("CSV Export Default", False, "Missing statistics section in CSV")
+                return False
+            
+            # Check for mood distribution section
+            if '=== DISTRIBUZIONE UMORE ===' not in csv_content:
+                self.log_test("CSV Export Default", False, "Missing mood distribution section in CSV")
+                return False
+            
+            self.log_test("CSV Export Default", True, f"Successfully exported CSV with {len(lines)} lines, proper headers and sections")
+            return True
+            
+        else:
+            self.log_test("CSV Export Default", False, f"HTTP {response.status_code}", response.text)
+            return False
+    
+    def test_csv_export_with_patient_id(self):
+        """Test GET /api/export/csv with specific patient_id parameter"""
+        print("\n=== Testing CSV Export with Patient ID ===")
+        
+        response, success, error = self.make_request("GET", "/export/csv", params={"patient_id": "test_patient"})
+        
+        if not success:
+            self.log_test("CSV Export with Patient ID", False, f"Request failed: {error}")
+            return False
+        
+        if response.status_code == 200:
+            # Check headers
+            content_type = response.headers.get('content-type', '')
+            if 'text/csv' not in content_type:
+                self.log_test("CSV Export with Patient ID", False, f"Wrong Content-Type: {content_type}")
+                return False
+            
+            # Check CSV content (should be minimal for non-existent patient)
+            csv_content = response.text
+            lines = csv_content.strip().split('\n')
+            
+            # Should still have headers and sections even if no data
+            expected_headers = ['Data', 'Umore', 'Livello_Umore', 'Emoji', 'Attività', 'Note', 'Data_Creazione']
+            first_line = lines[0]
+            for header in expected_headers:
+                if header not in first_line:
+                    self.log_test("CSV Export with Patient ID", False, f"Missing CSV header: {header}")
+                    return False
+            
+            self.log_test("CSV Export with Patient ID", True, f"Successfully handled patient_id parameter, returned CSV with {len(lines)} lines")
+            return True
+            
+        else:
+            self.log_test("CSV Export with Patient ID", False, f"HTTP {response.status_code}", response.text)
+            return False
+    
+    def test_csv_content_verification(self):
+        """Test CSV content structure and data integrity"""
+        print("\n=== Testing CSV Content Verification ===")
+        
+        response, success, error = self.make_request("GET", "/export/csv")
+        
+        if not success:
+            self.log_test("CSV Content Verification", False, f"Request failed: {error}")
+            return False
+        
+        if response.status_code == 200:
+            csv_content = response.text
+            lines = csv_content.strip().split('\n')
+            
+            # Parse CSV content
+            import csv
+            import io
+            
+            try:
+                csv_reader = csv.reader(io.StringIO(csv_content))
+                rows = list(csv_reader)
+                
+                if len(rows) < 1:
+                    self.log_test("CSV Content Verification", False, "No rows in CSV")
+                    return False
+                
+                # Check headers
+                headers = rows[0]
+                expected_headers = ['Data', 'Umore', 'Livello_Umore', 'Emoji', 'Attività', 'Note', 'Data_Creazione']
+                if headers != expected_headers:
+                    self.log_test("CSV Content Verification", False, f"Header mismatch. Expected: {expected_headers}, Got: {headers}")
+                    return False
+                
+                # Count data rows (before statistics section)
+                data_rows = 0
+                stats_section_found = False
+                distribution_section_found = False
+                
+                for i, row in enumerate(rows[1:], 1):  # Skip header
+                    if len(row) > 0 and '=== STATISTICHE RIASSUNTIVE ===' in row[0]:
+                        stats_section_found = True
+                        break
+                    elif len(row) == len(headers) and row[0] and row[0] != '':
+                        # This is a data row
+                        data_rows += 1
+                        
+                        # Verify date format (YYYY-MM-DD)
+                        try:
+                            datetime.strptime(row[0], "%Y-%m-%d")
+                        except ValueError:
+                            self.log_test("CSV Content Verification", False, f"Invalid date format in row {i}: {row[0]}")
+                            return False
+                        
+                        # Verify mood level is numeric
+                        try:
+                            mood_level = int(row[2])
+                            if mood_level < 1 or mood_level > 5:
+                                self.log_test("CSV Content Verification", False, f"Invalid mood level in row {i}: {mood_level}")
+                                return False
+                        except ValueError:
+                            self.log_test("CSV Content Verification", False, f"Non-numeric mood level in row {i}: {row[2]}")
+                            return False
+                
+                # Check for statistics section
+                for row in rows:
+                    if len(row) > 0 and '=== STATISTICHE RIASSUNTIVE ===' in row[0]:
+                        stats_section_found = True
+                    elif len(row) > 0 and '=== DISTRIBUZIONE UMORE ===' in row[0]:
+                        distribution_section_found = True
+                
+                if not stats_section_found:
+                    self.log_test("CSV Content Verification", False, "Statistics section not found in CSV")
+                    return False
+                
+                if not distribution_section_found:
+                    self.log_test("CSV Content Verification", False, "Mood distribution section not found in CSV")
+                    return False
+                
+                self.log_test("CSV Content Verification", True, f"CSV content verified: {data_rows} data rows, statistics and distribution sections present")
+                return True
+                
+            except Exception as e:
+                self.log_test("CSV Content Verification", False, f"Error parsing CSV: {str(e)}")
+                return False
+            
+        else:
+            self.log_test("CSV Content Verification", False, f"HTTP {response.status_code}", response.text)
+            return False
+    
     def test_existing_endpoints_verification(self):
-        """Quick verification that existing endpoints still work"""
+        """Quick verification that existing endpoints still work after CSV implementation"""
         print("\n=== Testing Existing Endpoints Verification ===")
         
         success_count = 0
