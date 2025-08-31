@@ -1,9 +1,9 @@
 {
-  "timestamp": "2025-08-31T17:55:48.205116",
+  "timestamp": "2025-08-31T19:25:03.483808",
   "base_url": "https://daylio-clone.preview.emergentagent.com/api",
   "total_tests": 12,
-  "passed": 9,
-  "failed": 3,
+  "passed": 8,
+  "failed": 4,
   "results": [
     {
       "test": "Health Check",
@@ -12,7 +12,7 @@
       "details": {
         "message": "LEAF API - Laboratorio di Educazione Alla Felicit\u00e0"
       },
-      "timestamp": "2025-08-31T17:55:41.475066"
+      "timestamp": "2025-08-31T19:24:56.771328"
     },
     {
       "test": "Mood Levels",
@@ -55,7 +55,7 @@
           "order": 5
         }
       ],
-      "timestamp": "2025-08-31T17:55:42.040264"
+      "timestamp": "2025-08-31T19:24:57.322671"
     },
     {
       "test": "Activity Categories",
@@ -243,13 +243,28 @@
           ]
         }
       ],
-      "timestamp": "2025-08-31T17:55:42.599784"
+      "timestamp": "2025-08-31T19:24:57.875087"
     },
     {
       "test": "Get All Entries (Empty)",
       "success": true,
-      "message": "Successfully retrieved 1 entries",
+      "message": "Successfully retrieved 5 entries",
       "details": [
+        {
+          "id": "11390853-c147-4763-b300-8fa4eedf8fd8",
+          "date": "invalid-date",
+          "mood": {
+            "id": 3,
+            "name": "neutro",
+            "emoji": "\ud83d\ude10",
+            "color": "#FFD23F"
+          },
+          "activities": [],
+          "note": "Test con data invalida",
+          "created_at": "2025-08-31T17:55:47.700000",
+          "updated_at": "2025-08-31T17:55:47.700000",
+          "patient_id": "default"
+        },
         {
           "id": "dcda53bb-4149-403a-937e-f64a500d3bd4",
           "date": "2025-08-31",
@@ -313,16 +328,82 @@
           "created_at": "2025-08-31T17:26:18.226000",
           "updated_at": "2025-08-31T17:26:18.226000",
           "patient_id": "default"
+        },
+        {
+          "id": "f0f6eff8-7dc9-4be6-a392-a23bb48d1fc2",
+          "date": "2025-08-30",
+          "mood": {
+            "id": 2,
+            "name": "male",
+            "emoji": "\ud83d\ude14",
+            "color": "#FF8E53"
+          },
+          "activities": [
+            {
+              "id": 1,
+              "name": "Attivit\u00e0 1",
+              "icon": "\ud83c\udfaf",
+              "category": "Test"
+            }
+          ],
+          "note": "Entry di test per il giorno 2025-08-30",
+          "created_at": "2025-08-31T17:55:46.490000",
+          "updated_at": "2025-08-31T17:55:46.490000",
+          "patient_id": "default"
+        },
+        {
+          "id": "1436f040-b275-4b77-afb5-3c79921ab92b",
+          "date": "2025-08-29",
+          "mood": {
+            "id": 3,
+            "name": "neutro",
+            "emoji": "\ud83d\ude10",
+            "color": "#FFD23F"
+          },
+          "activities": [
+            {
+              "id": 2,
+              "name": "Attivit\u00e0 2",
+              "icon": "\ud83c\udfaf",
+              "category": "Test"
+            }
+          ],
+          "note": "Entry di test per il giorno 2025-08-29",
+          "created_at": "2025-08-31T17:55:46.545000",
+          "updated_at": "2025-08-31T17:55:46.545000",
+          "patient_id": "default"
+        },
+        {
+          "id": "63e4756d-065e-4a76-94c6-eb8fc65c8329",
+          "date": "2025-08-28",
+          "mood": {
+            "id": 4,
+            "name": "bene",
+            "emoji": "\ud83d\ude0a",
+            "color": "#6BCF7F"
+          },
+          "activities": [
+            {
+              "id": 3,
+              "name": "Attivit\u00e0 3",
+              "icon": "\ud83c\udfaf",
+              "category": "Test"
+            }
+          ],
+          "note": "Entry di test per il giorno 2025-08-28",
+          "created_at": "2025-08-31T17:55:46.598000",
+          "updated_at": "2025-08-31T17:55:46.598000",
+          "patient_id": "default"
         }
       ],
-      "timestamp": "2025-08-31T17:55:43.154026"
+      "timestamp": "2025-08-31T19:24:58.427958"
     },
     {
       "test": "Create Mood Entry",
       "success": false,
       "message": "HTTP 400",
       "details": "{\"detail\":\"Entry already exists for date 2025-08-31\"}",
-      "timestamp": "2025-08-31T17:55:43.707556"
+      "timestamp": "2025-08-31T19:24:58.977839"
     },
     {
       "test": "Create Duplicate Entry",
@@ -331,7 +412,7 @@
       "details": {
         "detail": "Entry already exists for date 2025-08-31"
       },
-      "timestamp": "2025-08-31T17:55:44.265132"
+      "timestamp": "2025-08-31T19:24:59.534134"
     },
     {
       "test": "Get Entry By Date",
@@ -401,7 +482,7 @@
         "updated_at": "2025-08-31T17:26:18.226000",
         "patient_id": "default"
       },
-      "timestamp": "2025-08-31T17:55:44.816602"
+      "timestamp": "2025-08-31T19:25:00.088472"
     },
     {
       "test": "Get Non-existent Entry",
@@ -410,13 +491,28 @@
       "details": {
         "detail": "No entry found for date 2026-08-31"
       },
-      "timestamp": "2025-08-31T17:55:45.367991"
+      "timestamp": "2025-08-31T19:25:00.644567"
     },
     {
       "test": "Get All Entries (With Data)",
       "success": true,
-      "message": "Successfully retrieved 1 entries",
+      "message": "Successfully retrieved 5 entries",
       "details": [
+        {
+          "id": "11390853-c147-4763-b300-8fa4eedf8fd8",
+          "date": "invalid-date",
+          "mood": {
+            "id": 3,
+            "name": "neutro",
+            "emoji": "\ud83d\ude10",
+            "color": "#FFD23F"
+          },
+          "activities": [],
+          "note": "Test con data invalida",
+          "created_at": "2025-08-31T17:55:47.700000",
+          "updated_at": "2025-08-31T17:55:47.700000",
+          "patient_id": "default"
+        },
         {
           "id": "dcda53bb-4149-403a-937e-f64a500d3bd4",
           "date": "2025-08-31",
@@ -480,46 +576,96 @@
           "created_at": "2025-08-31T17:26:18.226000",
           "updated_at": "2025-08-31T17:26:18.226000",
           "patient_id": "default"
+        },
+        {
+          "id": "f0f6eff8-7dc9-4be6-a392-a23bb48d1fc2",
+          "date": "2025-08-30",
+          "mood": {
+            "id": 2,
+            "name": "male",
+            "emoji": "\ud83d\ude14",
+            "color": "#FF8E53"
+          },
+          "activities": [
+            {
+              "id": 1,
+              "name": "Attivit\u00e0 1",
+              "icon": "\ud83c\udfaf",
+              "category": "Test"
+            }
+          ],
+          "note": "Entry di test per il giorno 2025-08-30",
+          "created_at": "2025-08-31T17:55:46.490000",
+          "updated_at": "2025-08-31T17:55:46.490000",
+          "patient_id": "default"
+        },
+        {
+          "id": "1436f040-b275-4b77-afb5-3c79921ab92b",
+          "date": "2025-08-29",
+          "mood": {
+            "id": 3,
+            "name": "neutro",
+            "emoji": "\ud83d\ude10",
+            "color": "#FFD23F"
+          },
+          "activities": [
+            {
+              "id": 2,
+              "name": "Attivit\u00e0 2",
+              "icon": "\ud83c\udfaf",
+              "category": "Test"
+            }
+          ],
+          "note": "Entry di test per il giorno 2025-08-29",
+          "created_at": "2025-08-31T17:55:46.545000",
+          "updated_at": "2025-08-31T17:55:46.545000",
+          "patient_id": "default"
+        },
+        {
+          "id": "63e4756d-065e-4a76-94c6-eb8fc65c8329",
+          "date": "2025-08-28",
+          "mood": {
+            "id": 4,
+            "name": "bene",
+            "emoji": "\ud83d\ude0a",
+            "color": "#6BCF7F"
+          },
+          "activities": [
+            {
+              "id": 3,
+              "name": "Attivit\u00e0 3",
+              "icon": "\ud83c\udfaf",
+              "category": "Test"
+            }
+          ],
+          "note": "Entry di test per il giorno 2025-08-28",
+          "created_at": "2025-08-31T17:55:46.598000",
+          "updated_at": "2025-08-31T17:55:46.598000",
+          "patient_id": "default"
         }
       ],
-      "timestamp": "2025-08-31T17:55:45.917411"
+      "timestamp": "2025-08-31T19:25:01.200341"
     },
     {
       "test": "Create Additional Entries",
-      "success": true,
-      "message": "Successfully created 3 additional entries",
+      "success": false,
+      "message": "Only created 0/3 entries",
       "details": null,
-      "timestamp": "2025-08-31T17:55:46.603277"
+      "timestamp": "2025-08-31T19:25:01.873661"
     },
     {
       "test": "Statistics Overview",
-      "success": true,
-      "message": "Successfully retrieved statistics: 4 entries, streak: 4",
-      "details": {
-        "total_entries": 4,
-        "current_streak": 4,
-        "average_mood": "neutro \ud83d\ude0a",
-        "most_common_activities": [
-          "Esercizio fisico",
-          "Alimentazione sana",
-          "Pasti regolari",
-          "Idratazione",
-          "Famiglia"
-        ],
-        "mood_distribution": {
-          "bene": 2,
-          "male": 1,
-          "neutro": 1
-        }
-      },
-      "timestamp": "2025-08-31T17:55:47.153833"
+      "success": false,
+      "message": "HTTP 500",
+      "details": "{\"detail\":\"time data 'invalid-date' does not match format '%Y-%m-%d'\"}",
+      "timestamp": "2025-08-31T19:25:02.427913"
     },
     {
       "test": "Data Validation - Invalid Date",
-      "success": false,
-      "message": "Invalid date was accepted (status 200)",
+      "success": true,
+      "message": "Invalid date correctly rejected with status 400",
       "details": null,
-      "timestamp": "2025-08-31T17:55:47.703379"
+      "timestamp": "2025-08-31T19:25:02.981713"
     }
   ]
 }
