@@ -59,8 +59,8 @@ const HomePage = () => {
         <div className="max-w-md mx-auto px-4 py-6">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-2xl font-bold text-gray-800">Diario dell'Umore</h1>
-              <p className="text-sm text-gray-600">Studio di Psicoterapia</p>
+              <h1 className="text-2xl font-bold text-gray-800">LEAF</h1>
+              <p className="text-sm text-gray-600">Laboratorio di Educazione Alla Felicità</p>
             </div>
             <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center">
               <span className="text-white text-xl">😊</span>
