@@ -17,7 +17,7 @@ const Calendar = ({ onDateSelect, entries = [] }) => {
 
   const getEntryForDate = (year, month, day) => {
     const dateKey = formatDateKey(year, month, day);
-    return allMockEntries.find(entry => entry.date === dateKey);
+    return entries.find(entry => entry.date === dateKey);
   };
 
   const navigateMonth = (direction) => {
