@@ -352,26 +352,30 @@ const HomePage = () => {
             <div className="bg-gradient-to-r from-green-50 to-blue-50 rounded-3xl p-6 shadow-sm border border-green-100">
               <div className="text-center">
                 <div className="w-16 h-16 bg-gradient-to-r from-green-400 to-blue-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <span className="text-white text-2xl">📅</span>
+                  <span className="text-white text-2xl">👨‍⚕️</span>
                 </div>
-                <h4 className="text-lg font-semibold text-gray-800 mb-2">Hai bisogno di supporto?</h4>
-                <p className="text-gray-600 text-sm mb-6 leading-relaxed">
-                  Prenota una consulenza online con il nostro team di psicoterapia cognitivo comportamentale
+                <h4 className="text-lg font-semibold text-gray-800 mb-2">Hai bisogno di supporto professionale?</h4>
+                <p className="text-gray-600 text-sm mb-2 leading-relaxed">
+                  <strong>Dott. Mauro De Luca</strong><br/>
+                  Psicologo • Psicoterapeuta • Psicologo Clinico
+                </p>
+                <p className="text-gray-500 text-xs mb-6">
+                  25+ anni esperienza • 133 recensioni positive • Consulenze online
                 </p>
                 <a
-                  href="https://www.miodottore.it"
+                  href="https://www.miodottore.it/mauro-de-luca/psicologo-psicoterapeuta-psicologo-clinico/taranto#address-id=289784&is-online-only=false&filters%5Bspecializations%5D%5B%5D=12"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 bg-gradient-to-r from-green-500 to-blue-500 text-white px-8 py-4 rounded-2xl font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
                 >
-                  <span>📞</span>
-                  <span>Prenota su MioDottore</span>
+                  <span>📅</span>
+                  <span>Prenota Consulenza</span>
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                   </svg>
                 </a>
                 <p className="text-xs text-gray-500 mt-3">
-                  Sessioni online sicure e professionali
+                  💻 Online disponibile • 🏥 Studio a Taranto
                 </p>
               </div>
             </div>
