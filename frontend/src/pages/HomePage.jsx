@@ -336,6 +336,9 @@ const HomePage = () => {
         {/* Insights Tab */}
         {activeTab === 'insights' && (
           <div className="space-y-6">
+            {/* Mood Chart */}
+            <MoodChart />
+            
             <div className="bg-white rounded-3xl p-6 shadow-sm border border-gray-100">
               <h3 className="text-lg font-semibold text-gray-800 mb-6">Le tue statistiche</h3>
               
