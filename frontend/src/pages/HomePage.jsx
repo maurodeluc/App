@@ -493,7 +493,7 @@ const HomePage = () => {
               return (
                 <button
                   key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
+                  onClick={() => handleTabChange(tab.id)}
                   className={`flex flex-col items-center gap-1 py-2 px-4 rounded-2xl transition-all duration-300 ${
                     isActive
                       ? 'bg-gradient-to-r from-green-100 to-blue-100 text-green-600 scale-105'
