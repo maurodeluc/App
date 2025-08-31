@@ -225,18 +225,28 @@ const HomePage = () => {
             <div className="bg-white rounded-xl p-4 shadow-sm">
               <h4 className="font-semibold text-gray-800 mb-3">Statistiche</h4>
               <div className="space-y-2">
-                <div className="flex justify-between">
-                  <span className="text-gray-600">Entries totali</span>
-                  <span className="font-medium">{allMockEntries.length}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-600">Streak attuale</span>
-                  <span className="font-medium">7 giorni</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-600">Umore medio</span>
-                  <span className="font-medium">Bene 😊</span>
-                </div>
+                {statsLoading ? (
+                  <div className="text-center py-4">
+                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-green-500 mx-auto"></div>
+                  </div>
+                ) : statistics ? (
+                  <>
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Entries totali</span>
+                      <span className="font-medium">{statistics.total_entries}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Streak attuale</span>
+                      <span className="font-medium">{statistics.current_streak} giorni</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-gray-600">Umore medio</span>
+                      <span className="font-medium">{statistics.average_mood}</span>
+                    </div>
+                  </>
+                ) : (
+                  <p className="text-gray-500 text-center">Nessuna statistica disponibile</p>
+                )}
               </div>
             </div>
           </div>
