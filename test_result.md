@@ -360,14 +360,9 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Profile Page Photo Display"
-    - "Professional Title Update"
-    - "Contact Links Functionality"
-    - "CSV Export from Profile"
+    - "Booking Agenda Link" 
+  stuck_tasks:
     - "Booking Agenda Link"
-    - "App Navigation and Core Features"
-    - "Mobile Responsiveness"
-  stuck_tasks: []
   test_all: false
   test_priority: "high_first"
 
