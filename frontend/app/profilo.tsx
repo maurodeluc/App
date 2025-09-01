@@ -92,7 +92,7 @@ export default function Profilo() {
           </View>
           <View style={styles.doctorInfo}>
             <Text style={styles.doctorName}>Dr. Mauro De Luca</Text>
-            <Text style={styles.doctorTitle}>Psicologo Clinico</Text>
+            <Text style={styles.doctorTitle}>Psicologo Psicoterapeuta</Text>
             <Text style={styles.doctorSpecialty}>Specialista in Benessere Emotivo</Text>
           </View>
         </View>
