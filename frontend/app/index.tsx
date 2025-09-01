@@ -12,11 +12,12 @@ export default function Index() {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
-        {/* Header semplificato */}
+        {/* Header elegante con logo */}
         <View style={styles.header}>
-          <Text style={styles.title}>LEAF</Text>
-          <Text style={styles.subtitle}>Laboratorio di Educazione Alla Felicità</Text>
-          <Text style={styles.doctorName}>Dr. Mauro De Luca</Text>
+          <View style={styles.logoContainer}>
+            <Ionicons name="leaf" size={32} color="#10B981" />
+            <Text style={styles.title}>LEAF</Text>
+          </View>
         </View>
 
         {/* Welcome Card */}
