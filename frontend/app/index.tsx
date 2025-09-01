@@ -12,27 +12,11 @@ export default function Index() {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
-        {/* Header con stile originale LEAF */}
-        <View style={styles.headerBar}>
-          <View style={styles.logoSection}>
-            <LinearGradient colors={['#10B981', '#3B82F6']} style={styles.logoGradient}>
-              <Ionicons name="leaf" size={24} color="white" />
-            </LinearGradient>
-            <View>
-              <Text style={styles.leafTitle}>LEAF</Text>
-              <Text style={styles.leafSubtitle}>Laboratorio di Educazione Alla Felicità</Text>
-            </View>
-          </View>
-          <View style={styles.dayCounter}>
-            <Text style={styles.dayNumber}>0</Text>
-            <Text style={styles.dayLabel}>giorni</Text>
-          </View>
-          <LinearGradient colors={['#10B981', '#3B82F6']} style={styles.headerButton}>
-            <Ionicons name="calendar" size={20} color="white" />
-          </LinearGradient>
-          <LinearGradient colors={['#F59E0B', '#EF4444']} style={styles.headerButton}>
-            <Ionicons name="flash" size={20} color="white" />
-          </LinearGradient>
+        {/* Header semplificato */}
+        <View style={styles.header}>
+          <Text style={styles.title}>LEAF</Text>
+          <Text style={styles.subtitle}>Laboratorio di Educazione Alla Felicità</Text>
+          <Text style={styles.doctorName}>Dr. Mauro De Luca</Text>
         </View>
 
         {/* Welcome Card */}
