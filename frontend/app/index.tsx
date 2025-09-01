@@ -166,8 +166,22 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: 'bold',
     color: '#1F2937',
+    marginBottom: 8,
+    textAlign: 'center',
+  },
+  welcomeSubtitle: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#065F46',
+    marginBottom: 4,
+    textAlign: 'center',
+  },
+  doctorCredit: {
+    fontSize: 14,
+    color: '#047857',
     marginBottom: 12,
     textAlign: 'center',
+    fontStyle: 'italic',
   },
   welcomeText: {
     fontSize: 16,
