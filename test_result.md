@@ -363,9 +363,8 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Booking Agenda Link" 
-  stuck_tasks:
-    - "Booking Agenda Link"
+    - "Complete Profile Page Verification"
+  stuck_tasks: []
   test_all: false
   test_priority: "high_first"
 
