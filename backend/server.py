@@ -81,7 +81,11 @@ async def create_mood_entry(entry: MoodEntryCreate):
     entry_dict['date'] = entry_dict['date'].isoformat()
     mood_entry = MoodEntry(**entry_dict)
     
-    result = await db.mood_entries.insert_one(mood_entry.dict())
+    # Convert the mood_entry to dict and ensure date is string for MongoDB
+    mood_entry_dict = mood_entry.dict()
+    mood_entry_dict['date'] = mood_entry_dict['date'].isoformat() if isinstance(mood_entry_dict['date'], date) else mood_entry_dict['date']
+    
+    result = await db.mood_entries.insert_one(mood_entry_dict)
     if result.inserted_id:
         return mood_entry
     raise HTTPException(status_code=400, detail="Errore nella creazione dell'entry")
