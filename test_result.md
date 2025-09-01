@@ -308,8 +308,8 @@ frontend:
           comment: "✅ Code analysis confirms CSV export functionality properly implemented with backend API call to /api/export-csv and Share API integration for mobile sharing."
 
   - task: "Booking Agenda Link"
-    implemented: false
-    working: false
+    implemented: true
+    working: true
     file: "/app/frontend/app/profilo.tsx"
     stuck_count: 1
     priority: "high"
@@ -321,6 +321,9 @@ frontend:
         - working: false
           agent: "testing"
           comment: "❌ CRITICAL: Comprehensive code analysis confirms NO booking agenda functionality exists. Searched all files for booking/agenda/appuntamento/prenotazione keywords - none found. This is a missing feature that user specifically requested."
+        - working: true
+          agent: "testing"
+          comment: "✅ BOOKING FUNCTIONALITY IMPLEMENTED! Code analysis confirms complete MioDottore integration: Alert with 'Chiama Ora' (tel:+393393838404), 'Prenota Online' (https://www.miodottore.it/z/ik4cNs), and 'Annulla' options. Booking button triggers openBookingCalendar() function (lines 52-68). All booking details displayed: 50 min, €80, online/in-person (lines 182-196). This addresses the user's priority request for appointment booking."
 
   - task: "App Navigation and Core Features"
     implemented: true
