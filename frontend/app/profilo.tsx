@@ -148,6 +148,36 @@ export default function Profilo() {
           </Pressable>
         </View>
 
+        {/* Booking Section */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Prenota Consulenza</Text>
+          
+          <Pressable style={styles.bookingButton} onPress={openBookingCalendar}>
+            <Ionicons name="calendar" size={24} color="#FFFFFF" />
+            <View style={styles.bookingInfo}>
+              <Text style={styles.bookingLabel}>Prenota un Appuntamento</Text>
+              <Text style={styles.bookingDescription}>Scegli data e ora per la tua consulenza</Text>
+            </View>
+            <Ionicons name="chevron-forward" size={20} color="#FFFFFF" />
+          </Pressable>
+
+          <View style={styles.bookingDetailsContainer}>
+            <Text style={styles.bookingDetailsTitle}>Dettagli Consulenza</Text>
+            <View style={styles.bookingDetail}>
+              <Ionicons name="time" size={16} color="#6B7280" />
+              <Text style={styles.bookingDetailText}>Durata: 50 minuti</Text>
+            </View>
+            <View style={styles.bookingDetail}>
+              <Ionicons name="card" size={16} color="#6B7280" />
+              <Text style={styles.bookingDetailText}>Costo: €80 per sessione</Text>
+            </View>
+            <View style={styles.bookingDetail}>
+              <Ionicons name="location" size={16} color="#6B7280" />
+              <Text style={styles.bookingDetailText}>Modalità: Online o in presenza</Text>
+            </View>
+          </View>
+        </View>
+
         {/* Data Management */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>I tuoi Dati</Text>
