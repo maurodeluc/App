@@ -122,55 +122,28 @@ const styles = StyleSheet.create({
   scrollView: {
     flex: 1,
   },
-  headerBar: {
-    flexDirection: 'row',
+  header: {
     alignItems: 'center',
-    paddingHorizontal: 20,
-    paddingVertical: 16,
-    paddingTop: 10,
+    paddingVertical: 40,
+    paddingTop: 20,
   },
-  logoSection: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    flex: 1,
-  },
-  logoGradient: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginRight: 12,
-  },
-  leafTitle: {
-    fontSize: 20,
+  title: {
+    fontSize: 32,
     fontWeight: 'bold',
     color: '#065F46',
+    letterSpacing: 2,
   },
-  leafSubtitle: {
-    fontSize: 12,
+  subtitle: {
+    fontSize: 14,
     color: '#047857',
+    marginTop: 4,
+    textAlign: 'center',
   },
-  dayCounter: {
-    alignItems: 'center',
-    marginHorizontal: 16,
-  },
-  dayNumber: {
-    fontSize: 24,
-    fontWeight: 'bold',
+  doctorName: {
+    fontSize: 16,
     color: '#065F46',
-  },
-  dayLabel: {
-    fontSize: 12,
-    color: '#047857',
-  },
-  headerButton: {
-    width: 36,
-    height: 36,
-    borderRadius: 18,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginLeft: 8,
+    marginTop: 8,
+    fontWeight: '600',
   },
   welcomeCard: {
     backgroundColor: '#FFFFFF',
