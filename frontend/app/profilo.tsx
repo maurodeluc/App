@@ -88,7 +88,15 @@ export default function Profilo() {
         {/* Doctor Info Card */}
         <View style={styles.doctorCard}>
           <View style={styles.doctorAvatar}>
-            <Ionicons name="person" size={48} color="#FFFFFF" />
+            <Image 
+              source={{ uri: DOCTOR_PHOTO_BASE64 }}
+              style={{
+                width: 80,
+                height: 80,
+                borderRadius: 40,
+              }}
+              resizeMode="cover"
+            />
           </View>
           <View style={styles.doctorInfo}>
             <Text style={styles.doctorName}>Dr. Mauro De Luca</Text>
