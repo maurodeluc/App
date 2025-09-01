@@ -43,15 +43,15 @@ export default function Profilo() {
   };
 
   const openWebsite = () => {
-    Linking.openURL('https://www.example.com');
+    Linking.openURL('https://www.cupsi.it');
   };
 
   const openEmail = () => {
-    Linking.openURL('mailto:dr.maurodeluca@email.com');
+    Linking.openURL('mailto:info@maurodeluca.com');
   };
 
   const openPhone = () => {
-    Linking.openURL('tel:+390123456789');
+    Linking.openURL('tel:+393393838404');
   };
 
   const clearAllData = () => {
