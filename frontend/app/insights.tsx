@@ -40,10 +40,13 @@ const MOOD_VALUES = {
   molto_felice: 5,
 };
 
+const PERIOD_OPTIONS = ['7 giorni', '1 mese', '3 mesi', '6 mesi'];
+
 export default function Insights() {
   const [entries, setEntries] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [selectedPeriod, setSelectedPeriod] = useState('3 mesi');
+  const [selectedPeriod, setSelectedPeriod] = useState('1 mese');
+  const [showPeriodPicker, setShowPeriodPicker] = useState(false);
 
   useEffect(() => {
     fetchData();
@@ -68,7 +71,6 @@ export default function Insights() {
   };
 
   const checkForLowMoodAlerts = (data: any[]) => {
-    // Alert per umore basso - controlla ultimi 3 giorni
     const recentEntries = data.slice(0, 3);
     const lowMoodCount = recentEntries.filter(entry => 
       MOOD_VALUES[entry.mood_level as keyof typeof MOOD_VALUES] <= 2
@@ -86,19 +88,24 @@ export default function Insights() {
     }
   };
 
+  const getFilteredEntries = () => {
+    const days = selectedPeriod === '7 giorni' ? 7 : 
+                 selectedPeriod === '1 mese' ? 30 : 
+                 selectedPeriod === '3 mesi' ? 90 : 180;
+    return entries.slice(0, days);
+  };
+
   const prepareTrendData = () => {
-    if (!entries.length) return [];
+    const filteredEntries = getFilteredEntries();
+    if (!filteredEntries.length) return [];
     
-    const last30Days = entries
-      .slice(0, 30)
+    return filteredEntries
       .reverse()
       .map((entry, index) => ({
         value: MOOD_VALUES[entry.mood_level as keyof typeof MOOD_VALUES],
-        label: new Date(entry.date).getDate().toString(),
+        label: '',
         emoji: MOOD_EMOJIS[entry.mood_level as keyof typeof MOOD_EMOJIS],
       }));
-    
-    return last30Days;
   };
 
   if (isLoading) {
@@ -114,83 +121,111 @@ export default function Insights() {
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* Header con stile LEAF originale */}
-      <View style={styles.headerBar}>
-        <View style={styles.logoSection}>
-          <LinearGradient colors={['#10B981', '#3B82F6']} style={styles.logoGradient}>
-            <Ionicons name="leaf" size={24} color="white" />
-          </LinearGradient>
-          <View>
-            <Text style={styles.leafTitle}>LEAF</Text>
-            <Text style={styles.leafSubtitle}>Laboratorio di Educazione Alla Felicità</Text>
-          </View>
-        </View>
-        <View style={styles.dayCounter}>
-          <Text style={styles.dayNumber}>0</Text>
-          <Text style={styles.dayLabel}>giorni</Text>
-        </View>
-        <LinearGradient colors={['#10B981', '#3B82F6']} style={styles.headerButton}>
-          <Ionicons name="calendar" size={20} color="white" />
-        </LinearGradient>
-        <LinearGradient colors={['#F59E0B', '#EF4444']} style={styles.headerButton}>
-          <Ionicons name="flash" size={20} color="white" />
-        </LinearGradient>
+      {/* Header semplificato */}
+      <View style={styles.header}>
+        <Pressable onPress={() => router.back()} style={styles.backButton}>
+          <Ionicons name="arrow-back" size={24} color="#065F46" />
+        </Pressable>
+        <Text style={styles.title}>I tuoi Insights</Text>
       </View>
 
       <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
         {/* Sezione Andamento Umore */}
         <View style={styles.chartSection}>
           <View style={styles.chartHeader}>
-            <View style={styles.chartTitleContainer}>
-              <LinearGradient colors={['#8B5CF6', '#A855F7']} style={styles.chartIcon}>
-                <Ionicons name="trending-up" size={16} color="white" />
-              </LinearGradient>
-              <Text style={styles.chartTitle}>Andamento del tuo umore</Text>
-            </View>
-            <Pressable style={styles.periodSelector}>
+            <Text style={styles.chartTitle}>Andamento del tuo umore</Text>
+            <Pressable 
+              style={styles.periodSelector}
+              onPress={() => setShowPeriodPicker(!showPeriodPicker)}
+            >
               <Text style={styles.periodText}>{selectedPeriod}</Text>
               <Ionicons name="chevron-down" size={16} color="#6B7280" />
             </Pressable>
           </View>
 
-          {/* Grafico con emoji */}
+          {/* Period Picker */}
+          {showPeriodPicker && (
+            <View style={styles.periodPicker}>
+              {PERIOD_OPTIONS.map((period) => (
+                <Pressable
+                  key={period}
+                  style={[
+                    styles.periodOption,
+                    selectedPeriod === period && styles.periodOptionSelected
+                  ]}
+                  onPress={() => {
+                    setSelectedPeriod(period);
+                    setShowPeriodPicker(false);
+                  }}
+                >
+                  <Text style={[
+                    styles.periodOptionText,
+                    selectedPeriod === period && styles.periodOptionTextSelected
+                  ]}>
+                    {period}
+                  </Text>
+                </Pressable>
+              ))}
+            </View>
+          )}
+
+          {/* Grafico sistemato */}
           <View style={styles.chartContainer}>
             {prepareTrendData().length > 0 ? (
-              <View style={styles.chart}>
-                {/* Y-axis con emoji */}
-                <View style={styles.yAxisContainer}>
-                  <Text style={styles.emojiAxis}>😄</Text>
-                  <Text style={styles.emojiAxis}>😊</Text>
-                  <Text style={styles.emojiAxis}>😐</Text>
-                  <Text style={styles.emojiAxis}>😔</Text>
-                  <Text style={styles.emojiAxis}>😢</Text>
+              <View style={styles.chartWrapper}>
+                {/* Emoji Y-axis */}
+                <View style={styles.yAxisLabels}>
+                  <Text style={styles.emojiLabel}>😄</Text>
+                  <Text style={styles.emojiLabel}>😊</Text>
+                  <Text style={styles.emojiLabel}>😐</Text>
+                  <Text style={styles.emojiLabel}>😔</Text>
+                  <Text style={styles.emojiLabel}>😢</Text>
                 </View>
                 
-                {/* Grafico lineare */}
-                <View style={styles.chartWrapper}>
+                {/* Grafico contenuto */}
+                <View style={styles.chartContent}>
                   <LineChart
                     data={prepareTrendData()}
-                    width={screenWidth - 100}
-                    height={180}
+                    width={screenWidth - 120}
+                    height={160}
                     color="#8B5CF6"
                     thickness={3}
                     dataPointsColor="#8B5CF6"
-                    dataPointsRadius={6}
+                    dataPointsRadius={4}
                     curved
                     hideRules
                     hideAxes
                     yAxisOffset={1}
                     maxValue={5}
                     minValue={1}
-                    spacing={40}
-                    initialSpacing={20}
-                    endSpacing={20}
+                    spacing={Math.max(30, (screenWidth - 120) / Math.max(prepareTrendData().length, 10))}
+                    initialSpacing={10}
+                    endSpacing={10}
                   />
                 </View>
               </View>
             ) : (
-              <Text style={styles.noDataText}>Nessun dato disponibile</Text>
+              <Text style={styles.noDataText}>Nessun dato disponibile per il periodo selezionato</Text>
             )}
+          </View>
+
+          {/* Statistiche riassuntive */}
+          <View style={styles.statsRow}>
+            <View style={styles.statItem}>
+              <Text style={styles.statNumber}>{getFilteredEntries().length}</Text>
+              <Text style={styles.statLabel}>Registrazioni</Text>
+            </View>
+            <View style={styles.statItem}>
+              <Text style={styles.statNumber}>
+                {getFilteredEntries().length > 0 ? 
+                  (getFilteredEntries().reduce((sum, entry) => 
+                    sum + MOOD_VALUES[entry.mood_level as keyof typeof MOOD_VALUES], 0) / 
+                    getFilteredEntries().length).toFixed(1) : 
+                  '0.0'
+                }
+              </Text>
+              <Text style={styles.statLabel}>Umore medio</Text>
+            </View>
           </View>
         </View>
 
