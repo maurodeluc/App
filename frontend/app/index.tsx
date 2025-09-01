@@ -4,6 +4,47 @@ import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { LinearGradient } from 'expo-linear-gradient';
 
+// Array di suggerimenti per il benessere mentale
+const DAILY_WELLNESS_TIPS = [
+  "Dedica 5 minuti al giorno alla riflessione. Riconoscere le tue emozioni è il primo passo verso il benessere.",
+  "Pratica la respirazione profonda: inspira per 4 secondi, trattieni per 4, espira per 6. Ripeti 5 volte.",
+  "Scrivi tre cose per cui sei grato oggi. La gratitudine trasforma la prospettiva sulla vita.",
+  "Fai una passeggiata all'aria aperta, anche solo 10 minuti. La natura ha un effetto calmante sulla mente.",
+  "Disconnettiti dai social media per almeno un'ora oggi. Il tuo cervello ti ringrazierà.",
+  "Ascolta la tua musica preferita e lasciati trasportare dalle emozioni positive che suscita.",
+  "Chiama un amico o un familiare a cui tieni. Le connessioni sociali nutrono l'anima.",
+  "Pratica il 'qui e ora': concentrati su quello che stai facendo in questo momento, senza pensare al futuro.",
+  "Fai stretching o yoga per 10 minuti. Il corpo e la mente sono connessi.",
+  "Leggi qualche pagina di un libro che ti ispira. Nutri la tua mente con contenuti positivi.",
+  "Pratica l'autocompassione: trattati con la stessa gentilezza con cui tratteresti un caro amico.",
+  "Dedica tempo a un hobby che ami. È importante fare cose che ci danno gioia.",
+  "Medita per 5-10 minuti. Anche pochi minuti di silenzio possono fare la differenza.",
+  "Sorridi allo specchio. Anche un sorriso forzato può migliorare l'umore grazie alle endorfine.",
+  "Organizza il tuo spazio vitale. Un ambiente ordinato contribuisce a una mente più serena.",
+  "Bevi un tè caldo con consapevolezza, assaporando ogni sorso. I piccoli piaceri contano.",
+  "Fai una lista delle tue qualità positive. Ricordati del tuo valore.",
+  "Pratica la regola del 5-4-3-2-1: identifica 5 cose che vedi, 4 che tocchi, 3 che senti, 2 che annusi, 1 che gusti.",
+  "Dormi almeno 7-8 ore. Il riposo è fondamentale per il benessere mentale.",
+  "Fai qualcosa di gentile per qualcuno oggi. Dare agli altri ci fa sentire bene.",
+  "Accetta le tue emozioni senza giudicarle. Tutte le emozioni sono valide e temporanee.",
+  "Pratica la visualizzazione positiva: immagina te stesso sereno e felice.",
+  "Mantieni una routine mattutina che ti dia stabilità e senso di controllo.",
+  "Limita le notizie negative. Scegli consapevolmente cosa lasci entrare nella tua mente.",
+  "Fai esercizio fisico, anche leggero. Il movimento rilascia endorfine naturali.",
+  "Tieni un diario delle emozioni. Scrivere aiuta a processare i sentimenti.",
+  "Pratica il perdono, verso te stesso e gli altri. Liberati dal peso del risentimento.",
+  "Crea qualcosa con le tue mani: disegna, cucina, costruisci. La creatività nutre l'anima.",
+  "Stabilisci confini sani nelle relazioni. È ok dire no quando necessario.",
+  "Celebra i piccoli successi quotidiani. Ogni passo avanti merita riconoscimento.",
+];
+
+const getDailyTip = () => {
+  const today = new Date();
+  const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / (1000 * 60 * 60 * 24));
+  const tipIndex = dayOfYear % DAILY_WELLNESS_TIPS.length;
+  return DAILY_WELLNESS_TIPS[tipIndex];
+};
+
 export default function Index() {
   const navigateToTab = (tabName: string) => {
     router.push(`/${tabName}`);
