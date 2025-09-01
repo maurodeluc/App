@@ -339,9 +339,15 @@ metadata:
 
 test_plan:
   current_focus:
-    - "All backend tasks completed and tested"
+    - "Profile Page Photo Display"
+    - "Professional Title Update"
+    - "Contact Links Functionality"
+    - "CSV Export from Profile"
+    - "Booking Agenda Link"
+    - "App Navigation and Core Features"
+    - "Mobile Responsiveness"
   stuck_tasks: []
-  test_all: true
+  test_all: false
   test_priority: "high_first"
 
 agent_communication:
@@ -349,3 +355,5 @@ agent_communication:
       message: "Comprehensive backend testing completed for LEAF mood tracking API. Fixed 2 critical issues: (1) BSON date serialization in mood entry creation, (2) None handling in CSV export. All 13 backend tests now pass with 100% success rate. Backend is fully functional with proper Italian localization, complete CRUD operations, statistics, CSV export, and input validation."
     - agent: "testing"
       message: "Re-verification testing completed successfully. All 13 backend tests continue to pass with 100% success rate. LEAF mood tracking backend is fully operational with all core features working: FastAPI server, MongoDB integration, mood tracking CRUD operations, activity logging, statistics endpoints, CSV export functionality, and input validation. No issues found during latest testing session."
+    - agent: "main"
+      message: "Frontend implementation ready for testing. Profile page updated with user photo and professional title changes. Contact links and CSV export implemented. CRITICAL: Booking agenda link functionality is missing - user specifically requested this feature. Need comprehensive frontend testing focusing on profile page updates and missing booking functionality."
