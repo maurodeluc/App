@@ -11,7 +11,7 @@ import uuid
 import time
 
 # Configurazione URL del backend
-BACKEND_URL = "https://leaf-native.preview.emergentagent.com/api"
+BACKEND_URL = "https://felicita-app.preview.emergentagent.com/api"
 
 class LEAFBackendTester:
     def __init__(self):
