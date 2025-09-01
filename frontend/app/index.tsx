@@ -29,83 +29,102 @@ export default function Index() {
             <Text style={styles.doctorName}>Dr. Mauro De Luca</Text>
           </View>
 
-        {/* Welcome Message */}
-        <View style={styles.welcomeCard}>
-          <Text style={styles.welcomeTitle}>Benvenuto nel tuo spazio di benessere</Text>
-          <Text style={styles.welcomeText}>
-            Traccia il tuo umore quotidiano e scopri i pattern che influenzano il tuo benessere emotivo.
-          </Text>
-        </View>
+          {/* Welcome Card */}
+          <View style={styles.welcomeCard}>
+            <LinearGradient colors={['#FFFFFF', '#F8F9FF']} style={styles.cardGradient}>
+              <Text style={styles.welcomeTitle}>Benvenuto nel tuo spazio di benessere</Text>
+              <Text style={styles.welcomeText}>
+                Traccia il tuo umore quotidiano e scopri i pattern che influenzano il tuo benessere emotivo.
+              </Text>
+            </LinearGradient>
+          </View>
 
-        {/* Quick Actions */}
-        <View style={styles.actionsContainer}>
-          <Text style={styles.sectionTitle}>Inizia ora</Text>
-          
-          <Pressable 
-            style={styles.primaryAction}
-            onPress={() => navigateToTab('home')}
-          >
-            <Ionicons name="happy" size={32} color="#FFFFFF" />
-            <View style={styles.actionContent}>
-              <Text style={styles.actionTitle}>Registra il tuo umore</Text>
-              <Text style={styles.actionSubtitle}>Come ti senti oggi?</Text>
+          {/* Quick Actions */}
+          <View style={styles.actionsGrid}>
+            <LinearGradient 
+              colors={['#10B981', '#059669']} 
+              style={styles.primaryActionGradient}
+            >
+              <Pressable 
+                style={styles.primaryAction}
+                onPress={() => navigateToTab('home')}
+              >
+                <Ionicons name="happy" size={36} color="#FFFFFF" />
+                <View style={styles.actionContent}>
+                  <Text style={styles.actionTitle}>Registra Umore</Text>
+                  <Text style={styles.actionSubtitle}>Come ti senti oggi?</Text>
+                </View>
+                <Ionicons name="chevron-forward" size={24} color="#FFFFFF" />
+              </Pressable>
+            </LinearGradient>
+
+            <View style={styles.secondaryActionsRow}>
+              <LinearGradient 
+                colors={['#3B82F6', '#2563EB']} 
+                style={styles.secondaryActionGradient}
+              >
+                <Pressable 
+                  style={styles.secondaryAction}
+                  onPress={() => navigateToTab('calendario')}
+                >
+                  <Ionicons name="calendar" size={28} color="#FFFFFF" />
+                  <Text style={styles.secondaryActionText}>Calendario</Text>
+                </Pressable>
+              </LinearGradient>
+
+              <LinearGradient 
+                colors={['#F59E0B', '#D97706']} 
+                style={styles.secondaryActionGradient}
+              >
+                <Pressable 
+                  style={styles.secondaryAction}
+                  onPress={() => navigateToTab('insights')}
+                >
+                  <Ionicons name="analytics" size={28} color="#FFFFFF" />
+                  <Text style={styles.secondaryActionText}>Insights</Text>
+                </Pressable>
+              </LinearGradient>
             </View>
-            <Ionicons name="chevron-forward" size={24} color="#FFFFFF" />
-          </Pressable>
+          </View>
 
-          <View style={styles.secondaryActions}>
-            <Pressable 
-              style={styles.secondaryAction}
-              onPress={() => navigateToTab('calendario')}
-            >
-              <Ionicons name="calendar" size={24} color="#4F46E5" />
-              <Text style={styles.secondaryActionText}>Calendario</Text>
+          {/* Tips Section */}
+          <View style={styles.tipsContainer}>
+            <Text style={styles.sectionTitle}>💡 Suggerimento del giorno</Text>
+            <LinearGradient colors={['#FEF3C7', '#FDE68A']} style={styles.tipCardGradient}>
+              <View style={styles.tipCard}>
+                <Text style={styles.tipText}>
+                  "Dedica 5 minuti al giorno alla riflessione. Riconoscere le tue emozioni è il primo passo verso il benessere."
+                </Text>
+              </View>
+            </LinearGradient>
+          </View>
+        </ScrollView>
+
+        {/* Bottom Navigation */}
+        <LinearGradient colors={['#FFFFFF', '#F8F9FF']} style={styles.bottomNavGradient}>
+          <View style={styles.bottomNav}>
+            <Pressable style={styles.navItem} onPress={() => navigateToTab('home')}>
+              <Ionicons name="home" size={24} color="#6B46C1" />
+              <Text style={[styles.navText, styles.navTextActive]}>Home</Text>
             </Pressable>
-
-            <Pressable 
-              style={styles.secondaryAction}
-              onPress={() => navigateToTab('insights')}
-            >
-              <Ionicons name="analytics" size={24} color="#4F46E5" />
-              <Text style={styles.secondaryActionText}>Insights</Text>
+            
+            <Pressable style={styles.navItem} onPress={() => navigateToTab('calendario')}>
+              <Ionicons name="calendar-outline" size={24} color="#6B7280" />
+              <Text style={styles.navText}>Calendario</Text>
+            </Pressable>
+            
+            <Pressable style={styles.navItem} onPress={() => navigateToTab('insights')}>
+              <Ionicons name="analytics-outline" size={24} color="#6B7280" />
+              <Text style={styles.navText}>Insights</Text>
+            </Pressable>
+            
+            <Pressable style={styles.navItem} onPress={() => navigateToTab('profilo')}>
+              <Ionicons name="person-outline" size={24} color="#6B7280" />
+              <Text style={styles.navText}>Profilo</Text>
             </Pressable>
           </View>
-        </View>
-
-        {/* Tips Section */}
-        <View style={styles.tipsContainer}>
-          <Text style={styles.sectionTitle}>Suggerimento del giorno</Text>
-          <View style={styles.tipCard}>
-            <Ionicons name="bulb" size={24} color="#F59E0B" />
-            <Text style={styles.tipText}>
-              Dedica 5 minuti al giorno alla riflessione. Riconoscere le tue emozioni è il primo passo verso il benessere.
-            </Text>
-          </View>
-        </View>
-      </ScrollView>
-
-      {/* Bottom Navigation */}
-      <View style={styles.bottomNav}>
-        <Pressable style={styles.navItem} onPress={() => navigateToTab('home')}>
-          <Ionicons name="home" size={24} color="#4F46E5" />
-          <Text style={[styles.navText, styles.navTextActive]}>Home</Text>
-        </Pressable>
-        
-        <Pressable style={styles.navItem} onPress={() => navigateToTab('calendario')}>
-          <Ionicons name="calendar-outline" size={24} color="#9CA3AF" />
-          <Text style={styles.navText}>Calendario</Text>
-        </Pressable>
-        
-        <Pressable style={styles.navItem} onPress={() => navigateToTab('insights')}>
-          <Ionicons name="analytics-outline" size={24} color="#9CA3AF" />
-          <Text style={styles.navText}>Insights</Text>
-        </Pressable>
-        
-        <Pressable style={styles.navItem} onPress={() => navigateToTab('profilo')}>
-          <Ionicons name="person-outline" size={24} color="#9CA3AF" />
-          <Text style={styles.navText}>Profilo</Text>
-        </Pressable>
-      </View>
+        </LinearGradient>
+      </LinearGradient>
     </SafeAreaView>
   );
 }
