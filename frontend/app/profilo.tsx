@@ -113,7 +113,7 @@ export default function Profilo() {
             <Ionicons name="mail" size={24} color="#4F46E5" />
             <View style={styles.contactInfo}>
               <Text style={styles.contactLabel}>Email</Text>
-              <Text style={styles.contactValue}>dr.maurodeluca@email.com</Text>
+              <Text style={styles.contactValue}>info@maurodeluca.com</Text>
             </View>
             <Ionicons name="chevron-forward" size={20} color="#9CA3AF" />
           </Pressable>
@@ -122,7 +122,7 @@ export default function Profilo() {
             <Ionicons name="call" size={24} color="#4F46E5" />
             <View style={styles.contactInfo}>
               <Text style={styles.contactLabel}>Telefono</Text>
-              <Text style={styles.contactValue}>+39 012 345 6789</Text>
+              <Text style={styles.contactValue}>+39 339 3838404</Text>
             </View>
             <Ionicons name="chevron-forward" size={20} color="#9CA3AF" />
           </Pressable>
@@ -131,7 +131,7 @@ export default function Profilo() {
             <Ionicons name="globe" size={24} color="#4F46E5" />
             <View style={styles.contactInfo}>
               <Text style={styles.contactLabel}>Sito Web</Text>
-              <Text style={styles.contactValue}>www.leafwellness.com</Text>
+              <Text style={styles.contactValue}>www.cupsi.it</Text>
             </View>
             <Ionicons name="chevron-forward" size={20} color="#9CA3AF" />
           </Pressable>
