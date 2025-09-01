@@ -210,7 +210,7 @@ async def export_mood_data_csv():
         
         mood = mood_labels.get(entry.get('mood_level', ''), '')
         activities = '; '.join([activity_labels.get(act, act) for act in entry.get('activities', [])])
-        note = entry.get('note', '').replace(',', ';').replace('\n', ' ')
+        note = (entry.get('note') or '').replace(',', ';').replace('\n', ' ')
         
         csv_lines.append(f"{date_str},{mood},{activities},{note}")
     
