@@ -377,6 +377,15 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
   },
+  chartBoundary: {
+    width: screenWidth - 140,
+    height: 140,
+    overflow: 'hidden',
+    borderRadius: 8,
+    backgroundColor: '#FAFAFA',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   noDataText: {
     fontSize: 16,
     color: '#9CA3AF',
