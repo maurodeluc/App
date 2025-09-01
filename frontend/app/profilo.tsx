@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
-import Share from 'react-native-share';
+import { Share } from 'react-native';
 
 export default function Profilo() {
   const [isExporting, setIsExporting] = useState(false);
