@@ -23,8 +23,10 @@ export default function Index() {
         {/* Welcome Card */}
         <View style={styles.welcomeCard}>
           <Text style={styles.welcomeTitle}>Benvenuto nel tuo spazio di benessere</Text>
+          <Text style={styles.welcomeSubtitle}>Laboratorio di Educazione Alla Felicità</Text>
+          <Text style={styles.doctorCredit}>con il Dr. Mauro De Luca</Text>
           <Text style={styles.welcomeText}>
-            Traccia il tuo umore quotidiano e scopri i pattern che influenzano il tuo benessere emotivo con il Dr. Mauro De Luca.
+            Traccia il tuo umore quotidiano e scopri i pattern che influenzano il tuo benessere emotivo.
           </Text>
         </View>
 
