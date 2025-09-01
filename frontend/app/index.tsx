@@ -18,11 +18,7 @@ export default function Index() {
           {/* Header */}
           <View style={styles.header}>
             <View style={styles.logoContainer}>
-              <Image 
-                source={{ uri: LEAF_LOGO_BASE64 }} 
-                style={styles.logo}
-                resizeMode="contain"
-              />
+              <Ionicons name="leaf" size={48} color="#10B981" />
             </View>
             <Text style={styles.title}>LEAF</Text>
             <Text style={styles.subtitle}>Laboratorio di Educazione Alla Felicità</Text>
