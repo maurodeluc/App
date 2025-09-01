@@ -24,16 +24,13 @@ export default function Profilo() {
       if (response.ok) {
         const data = await response.json();
         
-        // Create a shareable file
-        const shareOptions = {
-          title: 'Esporta Dati LEAF',
-          message: 'I tuoi dati di mood tracking dal Laboratorio di Educazione Alla Felicità',
-          url: `data:text/csv;base64,${btoa(unescape(encodeURIComponent(data.csv_data)))}`,
-          type: 'text/csv',
-          filename: `LEAF_export_${new Date().toISOString().split('T')[0]}.csv`,
-        };
-
-        await Share.open(shareOptions);
+        // Create a shareable text message with CSV data
+        const csvText = data.csv_data;
+        
+        await Share.share({
+          message: `I tuoi dati LEAF - Laboratorio di Educazione Alla Felicità\n\n${csvText}`,
+          title: 'Esporta Dati LEAF'
+        });
       } else {
         throw new Error('Errore nell\'esportazione');
       }
