@@ -12,7 +12,8 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
-import { BarChart, PieChart, LineChart } from 'react-native-gifted-charts';
+import { LinearGradient } from 'expo-linear-gradient';
+import { LineChart } from 'react-native-gifted-charts';
 
 const { width: screenWidth } = Dimensions.get('window');
 
@@ -23,31 +24,12 @@ interface MoodStats {
   mood_distribution: { [key: string]: number };
 }
 
-const MOOD_COLORS = {
-  molto_triste: '#EF4444',
-  triste: '#F97316',
-  neutro: '#6B7280', 
-  felice: '#10B981',
-  molto_felice: '#059669',
-};
-
-const MOOD_LABELS = {
-  molto_triste: 'Molto Triste',
-  triste: 'Triste',
-  neutro: 'Neutro',
-  felice: 'Felice',
-  molto_felice: 'Molto Felice',
-};
-
-const ACTIVITY_LABELS = {
-  lavoro: 'Lavoro',
-  famiglia: 'Famiglia',
-  sport: 'Sport',
-  relax: 'Relax',
-  sociale: 'Sociale',
-  hobby: 'Hobby',
-  studio: 'Studio',
-  altro: 'Altro',
+const MOOD_EMOJIS = {
+  molto_triste: '😢',
+  triste: '😔', 
+  neutro: '😐',
+  felice: '😊',
+  molto_felice: '😄',
 };
 
 const MOOD_VALUES = {
@@ -59,10 +41,9 @@ const MOOD_VALUES = {
 };
 
 export default function Insights() {
-  const [stats, setStats] = useState<MoodStats | null>(null);
   const [entries, setEntries] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [selectedTab, setSelectedTab] = useState<'mood' | 'activities' | 'trends'>('mood');
+  const [selectedPeriod, setSelectedPeriod] = useState('3 mesi');
 
   useEffect(() => {
     fetchData();
@@ -70,16 +51,11 @@ export default function Insights() {
 
   const fetchData = async () => {
     try {
-      const [statsResponse, entriesResponse] = await Promise.all([
-        fetch(`${process.env.EXPO_PUBLIC_BACKEND_URL}/api/mood-stats`),
-        fetch(`${process.env.EXPO_PUBLIC_BACKEND_URL}/api/mood-entries`)
-      ]);
-
-      if (statsResponse.ok && entriesResponse.ok) {
-        const statsData = await statsResponse.json();
-        const entriesData = await entriesResponse.json();
-        setStats(statsData);
-        setEntries(entriesData);
+      const response = await fetch(`${process.env.EXPO_PUBLIC_BACKEND_URL}/api/mood-entries`);
+      if (response.ok) {
+        const data = await response.json();
+        setEntries(data);
+        checkForLowMoodAlerts(data);
       } else {
         throw new Error('Errore nel caricamento');
       }
@@ -91,36 +67,23 @@ export default function Insights() {
     }
   };
 
-  const prepareMoodDistributionData = () => {
-    if (!stats?.mood_distribution) return [];
-    
-    return Object.entries(stats.mood_distribution).map(([mood, count]) => ({
-      value: count,
-      color: MOOD_COLORS[mood as keyof typeof MOOD_COLORS],
-      text: MOOD_LABELS[mood as keyof typeof MOOD_LABELS],
-      label: `${count}`,
-    }));
-  };
+  const checkForLowMoodAlerts = (data: any[]) => {
+    // Alert per umore basso - controlla ultimi 3 giorni
+    const recentEntries = data.slice(0, 3);
+    const lowMoodCount = recentEntries.filter(entry => 
+      MOOD_VALUES[entry.mood_level as keyof typeof MOOD_VALUES] <= 2
+    ).length;
 
-  const prepareActivityData = () => {
-    if (!entries.length) return [];
-    
-    const activityCounts: { [key: string]: number } = {};
-    entries.forEach(entry => {
-      entry.activities.forEach((activity: string) => {
-        activityCounts[activity] = (activityCounts[activity] || 0) + 1;
-      });
-    });
-
-    return Object.entries(activityCounts)
-      .sort(([,a], [,b]) => b - a)
-      .slice(0, 6)
-      .map(([activity, count]) => ({
-        value: count,
-        label: ACTIVITY_LABELS[activity as keyof typeof ACTIVITY_LABELS] || activity,
-        frontColor: '#4F46E5',
-        labelTextStyle: { fontSize: 10 },
-      }));
+    if (lowMoodCount >= 2) {
+      Alert.alert(
+        '🌱 Supporto LEAF',
+        'Notiamo che il tuo umore è stato basso negli ultimi giorni. Ricorda che il Dr. De Luca è qui per supportarti. Considera di programmare una consulenza.',
+        [
+          { text: 'Grazie', style: 'default' },
+          { text: 'Contatta Dr. De Luca', style: 'default', onPress: () => router.push('/profilo') }
+        ]
+      );
+    }
   };
 
   const prepareTrendData = () => {
@@ -132,176 +95,17 @@ export default function Insights() {
       .map((entry, index) => ({
         value: MOOD_VALUES[entry.mood_level as keyof typeof MOOD_VALUES],
         label: new Date(entry.date).getDate().toString(),
-        dataPointText: MOOD_LABELS[entry.mood_level as keyof typeof MOOD_LABELS],
+        emoji: MOOD_EMOJIS[entry.mood_level as keyof typeof MOOD_EMOJIS],
       }));
     
     return last30Days;
   };
 
-  const getMoodEmoji = (average: number) => {
-    if (average >= 4.5) return '😄';
-    if (average >= 3.5) return '😊';
-    if (average >= 2.5) return '😐';
-    if (average >= 1.5) return '😔';
-    return '😢';
-  };
-
-  const renderMoodTab = () => (
-    <View style={styles.tabContent}>
-      {/* Average Mood Card */}
-      <View style={styles.statCard}>
-        <View style={styles.statHeader}>
-          <Ionicons name="happy" size={24} color="#4F46E5" />
-          <Text style={styles.statTitle}>Umore Medio</Text>
-        </View>
-        <Text style={styles.statValue}>
-          {getMoodEmoji(stats?.average_mood || 0)} {stats?.average_mood?.toFixed(1) || '0.0'}/5.0
-        </Text>
-        <Text style={styles.statDescription}>
-          Basato su {stats?.total_entries || 0} registrazioni
-        </Text>
-      </View>
-
-      {/* Mood Distribution Chart */}
-      <View style={styles.chartCard}>
-        <Text style={styles.chartTitle}>Distribuzione Umore</Text>
-        {prepareMoodDistributionData().length > 0 ? (
-          <View style={styles.chartContainer}>
-            <PieChart
-              data={prepareMoodDistributionData()}
-              donut
-              radius={80}
-              innerRadius={40}
-              centerLabelComponent={() => (
-                <View style={styles.centerLabel}>
-                  <Text style={styles.centerLabelText}>{stats?.total_entries}</Text>
-                  <Text style={styles.centerLabelSubtext}>Totale</Text>
-                </View>
-              )}
-            />
-            <View style={styles.legendContainer}>
-              {prepareMoodDistributionData().map((item, index) => (
-                <View key={index} style={styles.legendItem}>
-                  <View style={[styles.legendColor, { backgroundColor: item.color }]} />
-                  <Text style={styles.legendText}>{item.text}: {item.value}</Text>
-                </View>
-              ))}
-            </View>
-          </View>
-        ) : (
-          <Text style={styles.noDataText}>Nessun dato disponibile</Text>
-        )}
-      </View>
-    </View>
-  );
-
-  const renderActivitiesTab = () => (
-    <View style={styles.tabContent}>
-      {/* Most Common Activities */}
-      <View style={styles.statCard}>
-        <View style={styles.statHeader}>
-          <Ionicons name="list" size={24} color="#4F46E5" />
-          <Text style={styles.statTitle}>Attività Preferite</Text>
-        </View>
-        {stats?.most_common_activities.slice(0, 3).map((activity, index) => (
-          <Text key={activity} style={styles.activityItem}>
-            {index + 1}. {ACTIVITY_LABELS[activity as keyof typeof ACTIVITY_LABELS] || activity}
-          </Text>
-        ))}
-      </View>
-
-      {/* Activities Chart */}
-      <View style={styles.chartCard}>
-        <Text style={styles.chartTitle}>Frequenza Attività</Text>
-        {prepareActivityData().length > 0 ? (
-          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-            <BarChart
-              data={prepareActivityData()}
-              width={screenWidth - 80}
-              height={200}
-              barWidth={30}
-              spacing={20}
-              roundedTop
-              roundedBottom
-              xAxisThickness={1}
-              yAxisThickness={1}
-              xAxisColor="#E5E7EB"
-              yAxisColor="#E5E7EB"
-              yAxisTextStyle={{ fontSize: 12, color: '#6B7280' }}
-              xAxisLabelTextStyle={{ fontSize: 10, color: '#6B7280' }}
-              showValuesAsDataPointsText
-              dataPointsHeight={8}
-              dataPointsWidth={8}
-              dataPointsColor="#4F46E5"
-            />
-          </ScrollView>
-        ) : (
-          <Text style={styles.noDataText}>Nessun dato disponibile</Text>
-        )}
-      </View>
-    </View>
-  );
-
-  const renderTrendsTab = () => (
-    <View style={styles.tabContent}>
-      {/* Streak Card */}
-      <View style={styles.statCard}>
-        <View style={styles.statHeader}>
-          <Ionicons name="flame" size={24} color="#F97316" />
-          <Text style={styles.statTitle}>Serie Consecutiva</Text>
-        </View>
-        <Text style={styles.statValue}>🔥 {Math.min(entries.length, 7)} giorni</Text>
-        <Text style={styles.statDescription}>
-          Continua così per mantenere la motivazione!
-        </Text>
-      </View>
-
-      {/* Mood Trend Chart */}
-      <View style={styles.chartCard}>
-        <Text style={styles.chartTitle}>Andamento Umore (Ultimi 30 giorni)</Text>
-        {prepareTrendData().length > 0 ? (
-          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-            <LineChart
-              data={prepareTrendData()}
-              width={Math.max(screenWidth - 80, prepareTrendData().length * 25)}
-              height={200}
-              color="#4F46E5"
-              thickness={3}
-              dataPointsColor="#4F46E5"
-              dataPointsRadius={6}
-              curved
-              showVerticalLines
-              verticalLinesColor="#E5E7EB"
-              xAxisColor="#E5E7EB"
-              yAxisColor="#E5E7EB"
-              yAxisTextStyle={{ fontSize: 12, color: '#6B7280' }}
-              xAxisLabelTextStyle={{ fontSize: 10, color: '#6B7280' }}
-              spacing={40}
-              initialSpacing={20}
-              endSpacing={20}
-              maxValue={5}
-              minValue={1}
-              yAxisOffset={1}
-              rulesType="solid"
-              rulesColor="#F3F4F6"
-              showDataPointsForMissingData={false}
-              onDataPointClick={(item, index) => {
-                Alert.alert('Dettaglio', `${item.dataPointText} - Giorno ${item.label}`);
-              }}
-            />
-          </ScrollView>
-        ) : (
-          <Text style={styles.noDataText}>Nessun dato disponibile</Text>
-        )}
-      </View>
-    </View>
-  );
-
   if (isLoading) {
     return (
       <SafeAreaView style={styles.container}>
         <View style={styles.loadingContainer}>
-          <ActivityIndicator size="large" color="#4F46E5" />
+          <ActivityIndicator size="large" color="#10B981" />
           <Text style={styles.loadingText}>Caricamento insights...</Text>
         </View>
       </SafeAreaView>
@@ -310,75 +114,108 @@ export default function Insights() {
 
   return (
     <SafeAreaView style={styles.container}>
+      {/* Header con stile LEAF originale */}
+      <View style={styles.headerBar}>
+        <View style={styles.logoSection}>
+          <LinearGradient colors={['#10B981', '#3B82F6']} style={styles.logoGradient}>
+            <Ionicons name="leaf" size={24} color="white" />
+          </LinearGradient>
+          <View>
+            <Text style={styles.leafTitle}>LEAF</Text>
+            <Text style={styles.leafSubtitle}>Laboratorio di Educazione Alla Felicità</Text>
+          </View>
+        </View>
+        <View style={styles.dayCounter}>
+          <Text style={styles.dayNumber}>0</Text>
+          <Text style={styles.dayLabel}>giorni</Text>
+        </View>
+        <LinearGradient colors={['#10B981', '#3B82F6']} style={styles.headerButton}>
+          <Ionicons name="calendar" size={20} color="white" />
+        </LinearGradient>
+        <LinearGradient colors={['#F59E0B', '#EF4444']} style={styles.headerButton}>
+          <Ionicons name="flash" size={20} color="white" />
+        </LinearGradient>
+      </View>
+
       <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
-        {/* Header */}
-        <View style={styles.header}>
-          <Pressable onPress={() => router.back()} style={styles.backButton}>
-            <Ionicons name="arrow-back" size={24} color="#4F46E5" />
-          </Pressable>
-          <Text style={styles.title}>I tuoi Insights</Text>
+        {/* Sezione Andamento Umore */}
+        <View style={styles.chartSection}>
+          <View style={styles.chartHeader}>
+            <View style={styles.chartTitleContainer}>
+              <LinearGradient colors={['#8B5CF6', '#A855F7']} style={styles.chartIcon}>
+                <Ionicons name="trending-up" size={16} color="white" />
+              </LinearGradient>
+              <Text style={styles.chartTitle}>Andamento del tuo umore</Text>
+            </View>
+            <Pressable style={styles.periodSelector}>
+              <Text style={styles.periodText}>{selectedPeriod}</Text>
+              <Ionicons name="chevron-down" size={16} color="#6B7280" />
+            </Pressable>
+          </View>
+
+          {/* Grafico con emoji */}
+          <View style={styles.chartContainer}>
+            {prepareTrendData().length > 0 ? (
+              <View style={styles.chart}>
+                {/* Y-axis con emoji */}
+                <View style={styles.yAxisContainer}>
+                  <Text style={styles.emojiAxis}>😄</Text>
+                  <Text style={styles.emojiAxis}>😊</Text>
+                  <Text style={styles.emojiAxis}>😐</Text>
+                  <Text style={styles.emojiAxis}>😔</Text>
+                  <Text style={styles.emojiAxis}>😢</Text>
+                </View>
+                
+                {/* Grafico lineare */}
+                <View style={styles.chartWrapper}>
+                  <LineChart
+                    data={prepareTrendData()}
+                    width={screenWidth - 100}
+                    height={180}
+                    color="#8B5CF6"
+                    thickness={3}
+                    dataPointsColor="#8B5CF6"
+                    dataPointsRadius={6}
+                    curved
+                    hideRules
+                    hideAxes
+                    yAxisOffset={1}
+                    maxValue={5}
+                    minValue={1}
+                    spacing={40}
+                    initialSpacing={20}
+                    endSpacing={20}
+                  />
+                </View>
+              </View>
+            ) : (
+              <Text style={styles.noDataText}>Nessun dato disponibile</Text>
+            )}
+          </View>
         </View>
 
-        {/* Tab Navigation */}
-        <View style={styles.tabNavigation}>
-          <Pressable
-            style={[styles.tab, selectedTab === 'mood' && styles.activeTab]}
-            onPress={() => setSelectedTab('mood')}
-          >
-            <Text style={[styles.tabText, selectedTab === 'mood' && styles.activeTabText]}>
-              Umore
-            </Text>
-          </Pressable>
-          <Pressable
-            style={[styles.tab, selectedTab === 'activities' && styles.activeTab]}
-            onPress={() => setSelectedTab('activities')}
-          >
-            <Text style={[styles.tabText, selectedTab === 'activities' && styles.activeTabText]}>
-              Attività
-            </Text>
-          </Pressable>
-          <Pressable
-            style={[styles.tab, selectedTab === 'trends' && styles.activeTab]}
-            onPress={() => setSelectedTab('trends')}
-          >
-            <Text style={[styles.tabText, selectedTab === 'trends' && styles.activeTabText]}>
-              Andamento
-            </Text>
-          </Pressable>
-        </View>
-
-        {/* Tab Content */}
-        {selectedTab === 'mood' && renderMoodTab()}
-        {selectedTab === 'activities' && renderActivitiesTab()}
-        {selectedTab === 'trends' && renderTrendsTab()}
-
-        <View style={{ height: 100 }} />
+        <View style={{ height: 120 }} />
       </ScrollView>
 
       {/* Bottom Navigation */}
       <View style={styles.bottomNav}>
         <Pressable style={styles.navItem} onPress={() => router.push('/')}>
-          <Ionicons name="home-outline" size={24} color="#9CA3AF" />
-          <Text style={styles.navText}>Home</Text>
+          <Ionicons name="add-circle-outline" size={24} color="#6B7280" />
+          <Text style={styles.navText}>Oggi</Text>
         </Pressable>
         
         <Pressable style={styles.navItem} onPress={() => router.push('/calendario')}>
-          <Ionicons name="calendar-outline" size={24} color="#9CA3AF" />
+          <Ionicons name="calendar-outline" size={24} color="#6B7280" />
           <Text style={styles.navText}>Calendario</Text>
         </Pressable>
         
-        <Pressable style={styles.navItem} onPress={() => router.push('/home')}>
-          <Ionicons name="happy-outline" size={24} color="#9CA3AF" />
-          <Text style={styles.navText}>Umore</Text>
-        </Pressable>
-        
-        <Pressable style={styles.navItem}>
-          <Ionicons name="analytics" size={24} color="#4F46E5" />
+        <Pressable style={[styles.navItem, styles.navItemActive]}>
+          <Ionicons name="trending-up" size={24} color="#10B981" />
           <Text style={[styles.navText, styles.navTextActive]}>Insights</Text>
         </Pressable>
         
         <Pressable style={styles.navItem} onPress={() => router.push('/profilo')}>
-          <Ionicons name="person-outline" size={24} color="#9CA3AF" />
+          <Ionicons name="settings-outline" size={24} color="#6B7280" />
           <Text style={styles.navText}>Profilo</Text>
         </Pressable>
       </View>
