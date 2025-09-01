@@ -182,26 +182,29 @@ export default function Insights() {
                   <Text style={styles.emojiLabel}>😢</Text>
                 </View>
                 
-                {/* Grafico contenuto */}
+                {/* Contenitore grafico con bordi fissi */}
                 <View style={styles.chartContent}>
-                  <LineChart
-                    data={prepareTrendData()}
-                    width={screenWidth - 120}
-                    height={160}
-                    color="#8B5CF6"
-                    thickness={3}
-                    dataPointsColor="#8B5CF6"
-                    dataPointsRadius={4}
-                    curved
-                    hideRules
-                    hideAxes
-                    yAxisOffset={1}
-                    maxValue={5}
-                    minValue={1}
-                    spacing={Math.max(30, (screenWidth - 120) / Math.max(prepareTrendData().length, 10))}
-                    initialSpacing={10}
-                    endSpacing={10}
-                  />
+                  <View style={styles.chartBoundary}>
+                    <LineChart
+                      data={prepareTrendData()}
+                      width={screenWidth - 140}
+                      height={140}
+                      color="#8B5CF6"
+                      thickness={2}
+                      dataPointsColor="#8B5CF6"
+                      dataPointsRadius={3}
+                      curved
+                      hideRules
+                      hideAxes
+                      yAxisOffset={1}
+                      maxValue={5}
+                      minValue={1}
+                      spacing={Math.min(25, (screenWidth - 160) / Math.max(prepareTrendData().length - 1, 1))}
+                      initialSpacing={5}
+                      endSpacing={5}
+                      isAnimated={false}
+                    />
+                  </View>
                 </View>
               </View>
             ) : (
