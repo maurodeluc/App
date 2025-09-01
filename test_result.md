@@ -101,3 +101,177 @@
 #====================================================================================================
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
+
+user_problem_statement: "Test completo del backend LEAF per mood tracking - app mobile con backend FastAPI + MongoDB per gestire il mood tracking terapeutico per Dr. Mauro De Luca"
+
+backend:
+  - task: "Base API Endpoint"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: true
+          agent: "testing"
+          comment: "✅ GET /api/ endpoint working correctly, returns LEAF API message in Italian"
+
+  - task: "Create Mood Entry Complete"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 1
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: false
+          agent: "testing"
+          comment: "❌ Initial test failed with 500 error - BSON serialization issue with datetime.date objects"
+        - working: true
+          agent: "testing"
+          comment: "✅ Fixed date serialization issue in create_mood_entry function. POST /api/mood-entries now works with complete entries (mood + activities + note)"
+
+  - task: "Create Mood Entry Minimal"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 1
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: false
+          agent: "testing"
+          comment: "❌ Initial test failed with same BSON serialization issue"
+        - working: true
+          agent: "testing"
+          comment: "✅ Fixed with same date serialization fix. POST /api/mood-entries works with minimal entries (mood + activities only)"
+
+  - task: "Get All Mood Entries"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: true
+          agent: "testing"
+          comment: "✅ GET /api/mood-entries working correctly, returns list of entries with proper date handling"
+
+  - task: "Get Specific Mood Entry"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: true
+          agent: "testing"
+          comment: "✅ GET /api/mood-entries/{id} working correctly, retrieves specific entries by UUID"
+
+  - task: "Update Mood Entry"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: true
+          agent: "testing"
+          comment: "✅ PUT /api/mood-entries/{id} working correctly, updates mood_level and notes successfully"
+
+  - task: "Delete Mood Entry"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: true
+          agent: "testing"
+          comment: "✅ DELETE /api/mood-entries/{id} working correctly, returns Italian success message"
+
+  - task: "Mood Statistics"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        - working: true
+          agent: "testing"
+          comment: "✅ GET /api/mood-stats working correctly, calculates total_entries, average_mood, most_common_activities, and mood_distribution"
+
+  - task: "CSV Export"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 1
+    priority: "medium"
+    needs_retesting: false
+    status_history:
+        - working: false
+          agent: "testing"
+          comment: "❌ Initial test failed with 500 error - AttributeError on None note field"
+        - working: true
+          agent: "testing"
+          comment: "✅ Fixed None handling in CSV export. GET /api/export-csv now works correctly with Italian headers and proper CSV formatting"
+
+  - task: "Input Validation"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: false
+    status_history:
+        - working: true
+          agent: "testing"
+          comment: "✅ Validation working correctly - rejects entries without mood_level (422), rejects invalid mood values (422), returns 404 for nonexistent entries"
+
+  - task: "Multiple Activities Support"
+    implemented: true
+    working: true
+    file: "/app/backend/server.py"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: false
+    status_history:
+        - working: true
+          agent: "testing"
+          comment: "✅ Multiple activities support working correctly, can create entries with multiple ActivityType values"
+
+frontend:
+  - task: "Frontend Integration"
+    implemented: false
+    working: "NA"
+    file: "/app/frontend/src/App.js"
+    stuck_count: 0
+    priority: "low"
+    needs_retesting: false
+    status_history:
+        - working: "NA"
+          agent: "testing"
+          comment: "Frontend testing not performed as per system limitations - focus on backend API testing only"
+
+metadata:
+  created_by: "testing_agent"
+  version: "1.0"
+  test_sequence: 1
+  run_ui: false
+
+test_plan:
+  current_focus:
+    - "All backend tasks completed and tested"
+  stuck_tasks: []
+  test_all: true
+  test_priority: "high_first"
+
+agent_communication:
+    - agent: "testing"
+      message: "Comprehensive backend testing completed for LEAF mood tracking API. Fixed 2 critical issues: (1) BSON date serialization in mood entry creation, (2) None handling in CSV export. All 13 backend tests now pass with 100% success rate. Backend is fully functional with proper Italian localization, complete CRUD operations, statistics, CSV export, and input validation."
