@@ -35,30 +35,70 @@ export default function Index() {
           </LinearGradient>
         </View>
 
-        {/* Sezione Percorso di Benessere */}
-        <View style={styles.wellnessSection}>
-          <View style={styles.centralLogo}>
-            <LinearGradient colors={['#E0F2FE', '#F0FDF4']} style={styles.centralLogoContainer}>
-              <Ionicons name="leaf" size={60} color="#10B981" />
-            </LinearGradient>
-          </View>
-          <Text style={styles.journeyTitle}>Il tuo percorso di benessere</Text>
-          <Text style={styles.journeySubtitle}>con il Dr. Mauro De Luca</Text>
+        {/* Welcome Card */}
+        <View style={styles.welcomeCard}>
+          <Text style={styles.welcomeTitle}>Benvenuto nel tuo spazio di benessere</Text>
+          <Text style={styles.welcomeText}>
+            Traccia il tuo umore quotidiano e scopri i pattern che influenzano il tuo benessere emotivo con il Dr. Mauro De Luca.
+          </Text>
         </View>
 
-        {/* Sezione Export Dati */}
-        <View style={styles.exportSection}>
-          <View style={styles.exportHeader}>
-            <LinearGradient colors={['#3B82F6', '#1D4ED8']} style={styles.exportIcon}>
-              <Ionicons name="document" size={20} color="white" />
+        {/* Quick Actions */}
+        <View style={styles.actionsGrid}>
+          <LinearGradient 
+            colors={['#10B981', '#059669']} 
+            style={styles.primaryActionGradient}
+          >
+            <Pressable 
+              style={styles.primaryAction}
+              onPress={() => navigateToTab('home')}
+            >
+              <Ionicons name="happy" size={36} color="#FFFFFF" />
+              <View style={styles.actionContent}>
+                <Text style={styles.actionTitle}>Registra Umore</Text>
+                <Text style={styles.actionSubtitle}>Come ti senti oggi?</Text>
+              </View>
+              <Ionicons name="chevron-forward" size={24} color="#FFFFFF" />
+            </Pressable>
+          </LinearGradient>
+
+          <View style={styles.secondaryActionsRow}>
+            <LinearGradient 
+              colors={['#3B82F6', '#2563EB']} 
+              style={styles.secondaryActionGradient}
+            >
+              <Pressable 
+                style={styles.secondaryAction}
+                onPress={() => navigateToTab('calendario')}
+              >
+                <Ionicons name="calendar" size={28} color="#FFFFFF" />
+                <Text style={styles.secondaryActionText}>Calendario</Text>
+              </Pressable>
             </LinearGradient>
-            <Text style={styles.exportTitle}>Esporta i tuoi dati</Text>
+
+            <LinearGradient 
+              colors={['#F59E0B', '#D97706']} 
+              style={styles.secondaryActionGradient}
+            >
+              <Pressable 
+                style={styles.secondaryAction}
+                onPress={() => navigateToTab('insights')}
+              >
+                <Ionicons name="analytics" size={28} color="#FFFFFF" />
+                <Text style={styles.secondaryActionText}>Insights</Text>
+              </Pressable>
+            </LinearGradient>
           </View>
-          <Text style={styles.exportDescription}>
-            Esporta tutti i tuoi dati di monitoraggio dell'umore in formato CSV. 
-            Il file includerà le tue registrazioni giornaliere e le statistiche riassuntive 
-            per condividerle con il Dr. De Luca.
-          </Text>
+        </View>
+
+        {/* Tips Section */}
+        <View style={styles.tipsContainer}>
+          <Text style={styles.sectionTitle}>💡 Suggerimento del giorno</Text>
+          <View style={styles.tipCard}>
+            <Text style={styles.tipText}>
+              "Dedica 5 minuti al giorno alla riflessione. Riconoscere le tue emozioni è il primo passo verso il benessere."
+            </Text>
+          </View>
         </View>
 
         <View style={{ height: 120 }} />
