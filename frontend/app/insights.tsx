@@ -226,11 +226,60 @@ export default function Insights() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F8FAFC',
+    backgroundColor: '#E6F7F1', // Verde mint originale LEAF
+  },
+  headerBar: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+    paddingVertical: 16,
+    paddingTop: 10,
+  },
+  logoSection: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    flex: 1,
+  },
+  logoGradient: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: 12,
+  },
+  leafTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#065F46',
+  },
+  leafSubtitle: {
+    fontSize: 12,
+    color: '#047857',
+  },
+  dayCounter: {
+    alignItems: 'center',
+    marginHorizontal: 16,
+  },
+  dayNumber: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#065F46',
+  },
+  dayLabel: {
+    fontSize: 12,
+    color: '#047857',
+  },
+  headerButton: {
+    width: 36,
+    height: 36,
+    borderRadius: 18,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginLeft: 8,
   },
   scrollView: {
     flex: 1,
-    paddingHorizontal: 16,
   },
   loadingContainer: {
     flex: 1,
@@ -239,142 +288,75 @@ const styles = StyleSheet.create({
   },
   loadingText: {
     fontSize: 16,
-    color: '#6B7280',
+    color: '#047857',
     marginTop: 8,
   },
-  header: {
-    alignItems: 'center',
-    paddingVertical: 20,
-    paddingTop: 10,
-  },
-  backButton: {
-    position: 'absolute',
-    left: 0,
-    top: 20,
-    padding: 8,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#1F2937',
-  },
-  tabNavigation: {
-    flexDirection: 'row',
+  chartSection: {
     backgroundColor: '#FFFFFF',
-    borderRadius: 12,
-    padding: 4,
+    marginHorizontal: 20,
+    marginVertical: 20,
+    borderRadius: 16,
+    padding: 20,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  chartHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     marginBottom: 20,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
   },
-  tab: {
-    flex: 1,
-    paddingVertical: 12,
-    alignItems: 'center',
-    borderRadius: 8,
-  },
-  activeTab: {
-    backgroundColor: '#4F46E5',
-  },
-  tabText: {
-    fontSize: 14,
-    fontWeight: '600',
-    color: '#6B7280',
-  },
-  activeTabText: {
-    color: '#FFFFFF',
-  },
-  tabContent: {
-    gap: 20,
-  },
-  statCard: {
-    backgroundColor: '#FFFFFF',
-    borderRadius: 16,
-    padding: 20,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
-  },
-  statHeader: {
+  chartTitleContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 12,
   },
-  statTitle: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: '#1F2937',
-    marginLeft: 8,
-  },
-  statValue: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    color: '#1F2937',
-    marginBottom: 4,
-  },
-  statDescription: {
-    fontSize: 14,
-    color: '#6B7280',
-  },
-  activityItem: {
-    fontSize: 16,
-    color: '#374151',
-    marginBottom: 4,
-  },
-  chartCard: {
-    backgroundColor: '#FFFFFF',
-    borderRadius: 16,
-    padding: 20,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
+  chartIcon: {
+    width: 24,
+    height: 24,
+    borderRadius: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: 8,
   },
   chartTitle: {
     fontSize: 18,
     fontWeight: 'bold',
     color: '#1F2937',
-    marginBottom: 16,
+  },
+  periodSelector: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#F3F4F6',
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 20,
+  },
+  periodText: {
+    fontSize: 14,
+    color: '#374151',
+    marginRight: 4,
   },
   chartContainer: {
     alignItems: 'center',
   },
-  centerLabel: {
-    alignItems: 'center',
-  },
-  centerLabelText: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#1F2937',
-  },
-  centerLabelSubtext: {
-    fontSize: 12,
-    color: '#6B7280',
-  },
-  legendContainer: {
-    marginTop: 16,
-    width: '100%',
-  },
-  legendItem: {
+  chart: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 8,
   },
-  legendColor: {
-    width: 12,
-    height: 12,
-    borderRadius: 6,
-    marginRight: 8,
+  yAxisContainer: {
+    justifyContent: 'space-between',
+    height: 180,
+    paddingVertical: 10,
+    marginRight: 10,
   },
-  legendText: {
-    fontSize: 14,
-    color: '#374151',
+  emojiAxis: {
+    fontSize: 24,
+  },
+  chartWrapper: {
+    flex: 1,
   },
   noDataText: {
     fontSize: 16,
@@ -386,8 +368,9 @@ const styles = StyleSheet.create({
   bottomNav: {
     flexDirection: 'row',
     backgroundColor: '#FFFFFF',
-    paddingVertical: 12,
-    paddingBottom: 24,
+    paddingTop: 12,
+    paddingBottom: 28,
+    paddingHorizontal: 8,
     borderTopWidth: 1,
     borderTopColor: '#E5E7EB',
     shadowColor: '#000',
@@ -400,15 +383,20 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     paddingVertical: 8,
+    paddingHorizontal: 4,
+    borderRadius: 12,
+  },
+  navItemActive: {
+    backgroundColor: '#D1FAE5', // Verde chiaro per tab attiva
   },
   navText: {
     fontSize: 12,
-    color: '#9CA3AF',
+    color: '#6B7280',
     marginTop: 4,
     fontWeight: '500',
   },
   navTextActive: {
-    color: '#4F46E5',
+    color: '#10B981',
     fontWeight: '600',
   },
 });
