@@ -49,6 +49,21 @@ export default function Profilo() {
     Linking.openURL('https://www.cupsi.it');
   };
 
+  const openBookingCalendar = () => {
+    // For now, we'll open the website - in production this could be a dedicated booking system
+    Alert.alert(
+      'Prenota Consulenza',
+      'Per prenotare una consulenza, puoi:\n\n1. Chiamare direttamente al +39 339 3838404\n2. Inviare una email a info@maurodeluca.com\n3. Visitare il sito web www.cupsi.it\n\nSarai reindirizzato al sito web per maggiori informazioni.',
+      [
+        { text: 'Annulla', style: 'cancel' },
+        { 
+          text: 'Vai al Sito', 
+          onPress: () => Linking.openURL('https://www.cupsi.it')
+        }
+      ]
+    );
+  };
+
   const openEmail = () => {
     Linking.openURL('mailto:info@maurodeluca.com');
   };
