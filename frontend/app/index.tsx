@@ -124,7 +124,7 @@ export default function Index() {
           <Text style={styles.sectionTitle}>💡 Suggerimento del giorno</Text>
           <View style={styles.tipCard}>
             <Text style={styles.tipText}>
-              "Dedica 5 minuti al giorno alla riflessione. Riconoscere le tue emozioni è il primo passo verso il benessere."
+              {getDailyTip()}
             </Text>
           </View>
         </View>
