@@ -263,55 +263,22 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#E6F7F1', // Verde mint originale LEAF
   },
-  headerBar: {
-    flexDirection: 'row',
+  header: {
     alignItems: 'center',
-    paddingHorizontal: 20,
-    paddingVertical: 16,
+    paddingVertical: 20,
     paddingTop: 10,
+    position: 'relative',
   },
-  logoSection: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    flex: 1,
+  backButton: {
+    position: 'absolute',
+    left: 20,
+    top: 20,
+    padding: 8,
   },
-  logoGradient: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginRight: 12,
-  },
-  leafTitle: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#065F46',
-  },
-  leafSubtitle: {
-    fontSize: 12,
-    color: '#047857',
-  },
-  dayCounter: {
-    alignItems: 'center',
-    marginHorizontal: 16,
-  },
-  dayNumber: {
+  title: {
     fontSize: 24,
     fontWeight: 'bold',
     color: '#065F46',
-  },
-  dayLabel: {
-    fontSize: 12,
-    color: '#047857',
-  },
-  headerButton: {
-    width: 36,
-    height: 36,
-    borderRadius: 18,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginLeft: 8,
   },
   scrollView: {
     flex: 1,
@@ -342,19 +309,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 20,
-  },
-  chartTitleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  chartIcon: {
-    width: 24,
-    height: 24,
-    borderRadius: 12,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginRight: 8,
+    marginBottom: 16,
   },
   chartTitle: {
     fontSize: 18,
@@ -366,32 +321,58 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F3F4F6',
     paddingHorizontal: 12,
-    paddingVertical: 6,
+    paddingVertical: 8,
     borderRadius: 20,
   },
   periodText: {
     fontSize: 14,
     color: '#374151',
     marginRight: 4,
+    fontWeight: '500',
+  },
+  periodPicker: {
+    backgroundColor: '#F9FAFB',
+    borderRadius: 12,
+    padding: 8,
+    marginBottom: 16,
+  },
+  periodOption: {
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+    borderRadius: 8,
+  },
+  periodOptionSelected: {
+    backgroundColor: '#10B981',
+  },
+  periodOptionText: {
+    fontSize: 14,
+    color: '#374151',
+    fontWeight: '500',
+  },
+  periodOptionTextSelected: {
+    color: '#FFFFFF',
+    fontWeight: '600',
   },
   chartContainer: {
-    alignItems: 'center',
+    marginVertical: 16,
   },
-  chart: {
+  chartWrapper: {
     flexDirection: 'row',
     alignItems: 'center',
   },
-  yAxisContainer: {
+  yAxisLabels: {
+    height: 160,
     justifyContent: 'space-between',
-    height: 180,
-    paddingVertical: 10,
-    marginRight: 10,
+    paddingVertical: 8,
+    marginRight: 8,
   },
-  emojiAxis: {
-    fontSize: 24,
+  emojiLabel: {
+    fontSize: 20,
+    textAlign: 'center',
   },
-  chartWrapper: {
+  chartContent: {
     flex: 1,
+    alignItems: 'center',
   },
   noDataText: {
     fontSize: 16,
@@ -399,6 +380,26 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontStyle: 'italic',
     paddingVertical: 40,
+  },
+  statsRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    paddingTop: 16,
+    borderTopWidth: 1,
+    borderTopColor: '#F3F4F6',
+  },
+  statItem: {
+    alignItems: 'center',
+  },
+  statNumber: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#065F46',
+  },
+  statLabel: {
+    fontSize: 12,
+    color: '#6B7280',
+    marginTop: 4,
   },
   bottomNav: {
     flexDirection: 'row',
