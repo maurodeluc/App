@@ -11,114 +11,81 @@ export default function Index() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <LinearGradient colors={['#6B46C1', '#7C3AED', '#5B21B6']} style={styles.gradientBackground}>
-        <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
-          {/* Header */}
-          <View style={styles.header}>
-            <View style={styles.logoContainer}>
-              <Ionicons name="leaf" size={48} color="#10B981" />
-            </View>
-            <Text style={styles.title}>LEAF</Text>
-            <Text style={styles.subtitle}>Laboratorio di Educazione Alla Felicità</Text>
-            <Text style={styles.doctorName}>Dr. Mauro De Luca</Text>
-          </View>
-
-          {/* Welcome Card */}
-          <View style={styles.welcomeCard}>
-            <LinearGradient colors={['#FFFFFF', '#F8F9FF']} style={styles.cardGradient}>
-              <Text style={styles.welcomeTitle}>Benvenuto nel tuo spazio di benessere</Text>
-              <Text style={styles.welcomeText}>
-                Traccia il tuo umore quotidiano e scopri i pattern che influenzano il tuo benessere emotivo.
-              </Text>
+      <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
+        {/* Header con stile originale LEAF */}
+        <View style={styles.headerBar}>
+          <View style={styles.logoSection}>
+            <LinearGradient colors={['#10B981', '#3B82F6']} style={styles.logoGradient}>
+              <Ionicons name="leaf" size={24} color="white" />
             </LinearGradient>
-          </View>
-
-          {/* Quick Actions */}
-          <View style={styles.actionsGrid}>
-            <LinearGradient 
-              colors={['#10B981', '#059669']} 
-              style={styles.primaryActionGradient}
-            >
-              <Pressable 
-                style={styles.primaryAction}
-                onPress={() => navigateToTab('home')}
-              >
-                <Ionicons name="happy" size={36} color="#FFFFFF" />
-                <View style={styles.actionContent}>
-                  <Text style={styles.actionTitle}>Registra Umore</Text>
-                  <Text style={styles.actionSubtitle}>Come ti senti oggi?</Text>
-                </View>
-                <Ionicons name="chevron-forward" size={24} color="#FFFFFF" />
-              </Pressable>
-            </LinearGradient>
-
-            <View style={styles.secondaryActionsRow}>
-              <LinearGradient 
-                colors={['#3B82F6', '#2563EB']} 
-                style={styles.secondaryActionGradient}
-              >
-                <Pressable 
-                  style={styles.secondaryAction}
-                  onPress={() => navigateToTab('calendario')}
-                >
-                  <Ionicons name="calendar" size={28} color="#FFFFFF" />
-                  <Text style={styles.secondaryActionText}>Calendario</Text>
-                </Pressable>
-              </LinearGradient>
-
-              <LinearGradient 
-                colors={['#F59E0B', '#D97706']} 
-                style={styles.secondaryActionGradient}
-              >
-                <Pressable 
-                  style={styles.secondaryAction}
-                  onPress={() => navigateToTab('insights')}
-                >
-                  <Ionicons name="analytics" size={28} color="#FFFFFF" />
-                  <Text style={styles.secondaryActionText}>Insights</Text>
-                </Pressable>
-              </LinearGradient>
+            <View>
+              <Text style={styles.leafTitle}>LEAF</Text>
+              <Text style={styles.leafSubtitle}>Laboratorio di Educazione Alla Felicità</Text>
             </View>
           </View>
+          <View style={styles.dayCounter}>
+            <Text style={styles.dayNumber}>0</Text>
+            <Text style={styles.dayLabel}>giorni</Text>
+          </View>
+          <LinearGradient colors={['#10B981', '#3B82F6']} style={styles.headerButton}>
+            <Ionicons name="calendar" size={20} color="white" />
+          </LinearGradient>
+          <LinearGradient colors={['#F59E0B', '#EF4444']} style={styles.headerButton}>
+            <Ionicons name="flash" size={20} color="white" />
+          </LinearGradient>
+        </View>
 
-          {/* Tips Section */}
-          <View style={styles.tipsContainer}>
-            <Text style={styles.sectionTitle}>💡 Suggerimento del giorno</Text>
-            <LinearGradient colors={['#FEF3C7', '#FDE68A']} style={styles.tipCardGradient}>
-              <View style={styles.tipCard}>
-                <Text style={styles.tipText}>
-                  "Dedica 5 minuti al giorno alla riflessione. Riconoscere le tue emozioni è il primo passo verso il benessere."
-                </Text>
-              </View>
+        {/* Sezione Percorso di Benessere */}
+        <View style={styles.wellnessSection}>
+          <View style={styles.centralLogo}>
+            <LinearGradient colors={['#E0F2FE', '#F0FDF4']} style={styles.centralLogoContainer}>
+              <Ionicons name="leaf" size={60} color="#10B981" />
             </LinearGradient>
           </View>
-        </ScrollView>
+          <Text style={styles.journeyTitle}>Il tuo percorso di benessere</Text>
+          <Text style={styles.journeySubtitle}>con il Dr. Mauro De Luca</Text>
+        </View>
 
-        {/* Bottom Navigation */}
-        <LinearGradient colors={['#FFFFFF', '#F8F9FF']} style={styles.bottomNavGradient}>
-          <View style={styles.bottomNav}>
-            <Pressable style={styles.navItem} onPress={() => navigateToTab('home')}>
-              <Ionicons name="home" size={24} color="#6B46C1" />
-              <Text style={[styles.navText, styles.navTextActive]}>Home</Text>
-            </Pressable>
-            
-            <Pressable style={styles.navItem} onPress={() => navigateToTab('calendario')}>
-              <Ionicons name="calendar-outline" size={24} color="#6B7280" />
-              <Text style={styles.navText}>Calendario</Text>
-            </Pressable>
-            
-            <Pressable style={styles.navItem} onPress={() => navigateToTab('insights')}>
-              <Ionicons name="analytics-outline" size={24} color="#6B7280" />
-              <Text style={styles.navText}>Insights</Text>
-            </Pressable>
-            
-            <Pressable style={styles.navItem} onPress={() => navigateToTab('profilo')}>
-              <Ionicons name="person-outline" size={24} color="#6B7280" />
-              <Text style={styles.navText}>Profilo</Text>
-            </Pressable>
+        {/* Sezione Export Dati */}
+        <View style={styles.exportSection}>
+          <View style={styles.exportHeader}>
+            <LinearGradient colors={['#3B82F6', '#1D4ED8']} style={styles.exportIcon}>
+              <Ionicons name="document" size={20} color="white" />
+            </LinearGradient>
+            <Text style={styles.exportTitle}>Esporta i tuoi dati</Text>
           </View>
-        </LinearGradient>
-      </LinearGradient>
+          <Text style={styles.exportDescription}>
+            Esporta tutti i tuoi dati di monitoraggio dell'umore in formato CSV. 
+            Il file includerà le tue registrazioni giornaliere e le statistiche riassuntive 
+            per condividerle con il Dr. De Luca.
+          </Text>
+        </View>
+
+        <View style={{ height: 120 }} />
+      </ScrollView>
+
+      {/* Bottom Navigation con stile originale */}
+      <View style={styles.bottomNav}>
+        <Pressable style={[styles.navItem, styles.navItemActive]} onPress={() => navigateToTab('home')}>
+          <Ionicons name="add-circle" size={24} color="#10B981" />
+          <Text style={[styles.navText, styles.navTextActive]}>Oggi</Text>
+        </Pressable>
+        
+        <Pressable style={styles.navItem} onPress={() => navigateToTab('calendario')}>
+          <Ionicons name="calendar-outline" size={24} color="#6B7280" />
+          <Text style={styles.navText}>Calendario</Text>
+        </Pressable>
+        
+        <Pressable style={styles.navItem} onPress={() => navigateToTab('insights')}>
+          <Ionicons name="trending-up-outline" size={24} color="#6B7280" />
+          <Text style={styles.navText}>Insights</Text>
+        </Pressable>
+        
+        <Pressable style={styles.navItem} onPress={() => navigateToTab('profilo')}>
+          <Ionicons name="settings-outline" size={24} color="#6B7280" />
+          <Text style={styles.navText}>Profilo</Text>
+        </Pressable>
+      </View>
     </SafeAreaView>
   );
 }
